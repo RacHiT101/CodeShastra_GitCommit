@@ -107,9 +107,32 @@ const Quizz = ({ selectedCourse, courses }) => {
       ) : showResults ? (
         renderResults()
       ) : (
-        <button onClick={handleStartQuiz} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Start Quiz
-        </button>
+        <>
+        <div className='flex' style={{flexDirection:"column",}}>
+          <div >
+            <div style={{fontSize:"2rem",fontWeight:"600",marginTop:"10%"}}>Rules</div>
+            <br></br>
+            1. Duration: Each question will have a time limit of 10 seconds. The entire quiz will consist of 4 questions.
+            <br></br>
+            2. Number of Questions: There are 4 questions in this quiz.
+            <br></br>
+            3. Question Types: All questions will be multiple-choice.
+            <br></br>
+            4. Scoring System: The scoring system will be uniform, where each correct answer earns a fixed number of points.
+            <br></br>
+            5. Passing Grade: The passing grade for the quiz will be 50%. Participants must score at least 50% to pass the quiz.
+            <br></br>
+            6. Attempts: Participants will be allowed only 1 attempt to complete the quiz.
+            <br></br>
+            7. Cheating Policy: Any form of cheating, including using external resources or discussing answers with others, is strictly prohibited. Participants found cheating will be disqualified from the quiz.
+            <br></br>
+            <br></br>
+          </div>
+          <button onClick={handleStartQuiz} style={{width:"20%",padding:"1rem 1rem 1rem 1rem",fontWeight:"500",fontSize:"1.2rem"}} className="bg-blue-400 hover:bg-blue-600 text-white rounded-xl">
+            Start Quiz
+          </button>
+        </div>
+        </>
       )}
     </div>
   );

@@ -291,20 +291,30 @@ const Courses = () => {
       </Tabs>
       
       <div className="w-1/3 h-full flex gap-3 flex-col">
-        <div className="w-full flex flex-col h-full rounded-xl shadow-md shadow-gray-200 bg-white p-4">
-          <div className="flex h-12 mb-4 items-center justify-between">
-            <div className="">Courses For you</div>
+        <div className="w-full flex flex-col h-full rounded-xl shadow-xl shadow-gray-300 bg-white p-4">
+          <div className="flex h-12 mb-4 items-center">
+            <div style={{fontSize:"1.5rem",fontWeight:"500"}}>Courses For you</div>
           </div>
           <div className="flex flex-col h-full overflow-y-auto">
             <div className="flex flex-col gap-5">
               {courseNames.map((course) => (
-                <div
-                  className={`text-center shadow-lg p-4 cursor-pointer ${
-                    selectedCourse === course ? "text-blue-500" : ""
+                <div style={{fontWeight:"medium",fontSize:"1.15rem",background: selectedCourse === course ? "#add8e6" : "inherit",}}
+                  className={`text-center p-4 cursor-pointer rounded-xl ${
+                    selectedCourse === course ? "text-blue-500" : "inherit"
                   }`}
                   key={course}
-                  onClick={() => handleCourseClick(course)}
-                >
+                onClick={() => handleCourseClick(course)}
+                onMouseEnter={() => {
+                  if (!selectedCourse) {
+                    setSelectedCourse(course);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (!selectedCourse) {
+                    setSelectedCourse(null);
+                  }
+                }}
+              >
                   {course}
                 </div>
               ))}
