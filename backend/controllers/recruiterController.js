@@ -64,20 +64,20 @@ exports.recruiterLogin = async (req, res) => {
     const { email, password } = req.body;
 
     // Find the recruiter by email
-    const recruiter = await Recruiter.findOne({ email });
+    const user = await Recruiter.findOne({ email });
 
     // Check if recruiter with the provided email exists
-    if (!recruiter) {
+    if (!user) {
       return res.status(404).json({ message: 'Recruiter not found' });
     }
 
     // Check if the password matches
-    if (recruiter.password !== password) {
+    if (user.password !== password) {
       return res.status(401).json({ message: 'Invalid password' });
     }
 
     // If email and password are correct, return the recruiter object
-    res.status(200).json({ recruiter });
+    res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
