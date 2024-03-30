@@ -2,7 +2,8 @@ import { Box, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Sidebar from "../components/main/Sidebar";
+import Sidebar from "../components/recruiterMain/Sidebar";
+import Navbar from "../components/recruiterMain/Navbar";
 import ReactStars from "react-stars";
 
 const RecruiterPage = () => {
@@ -92,7 +93,8 @@ const RecruiterPage = () => {
   return (
     <div className="h-full w-full flex">
       <Sidebar />
-      <div className="ml-24">
+      <div className="w-full h-full relative flex flex-col items-center justify-center">
+      <Navbar />
         <Box
           borderWidth="1px"
           borderRadius="lg"
@@ -120,7 +122,6 @@ const RecruiterPage = () => {
             <Text>{recruiter?.name}</Text>
           </Box>
         </Box>
-      </div>
       <div className="px-2 border-t-2 border-gray-600 self-stretch flex flex-col items-start justify-start">
         {/* Rating input */}
         <ReactStars
@@ -182,6 +183,7 @@ const RecruiterPage = () => {
             ))}
           </div>
         )}
+      </div>
       </div>
     </div>
   );
