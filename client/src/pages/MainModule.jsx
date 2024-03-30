@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import Sidebar from "../components/main/Sidebar";
 import Navbar from "../components/main/Navbar";
+import Dashboard from "../components/main/Dashboard";
+import Profile from "../components/main/Profile";
 
 const MainModule = () => {
-  const [activeSection, setActiveSection] = useState("dashboard");
+  const [activeSection, setActiveSection] = useState("profile");
   const getSection = () => {
     switch (activeSection) {
       case "dashboard":
-        return <div>dashboard</div>;
+        return <div><Dashboard/></div>;
+        return <Dashboard />;
       case "jobs":
         return <div>jobs</div>;
       case "profile":
-        return <div>profile</div>;
+        return <div><Profile/></div>;
       case "settings":
         return <div>settings</div>;
     }
@@ -21,9 +24,9 @@ const MainModule = () => {
     <div className="w-full h-full overflow-y-auto overflow-x-hidden flex items-center justify-center">
       <Sidebar />
 
-      <div className="flex flex-col h-full w-full">
+      <div className="flex flex-col relative pt-10  h-full w-full">
         <Navbar />
-        {getSection()}
+        <div className="h-full w-full overflow-y-auto">{getSection()}</div>
       </div>
     </div>
   );
