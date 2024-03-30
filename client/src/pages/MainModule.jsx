@@ -4,6 +4,8 @@ import Navbar from "../components/main/Navbar";
 import Dashboard from "../components/main/Dashboard";
 import Profile from "../components/main/Profile";
 import Courses from "../components/main/Courses";
+import Jobs from "../components/main/Jobs";
+import Chats from "../components/chat/Chats.jsx";
 
 const MainModule = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -14,13 +16,15 @@ const MainModule = () => {
       case "dashboard":
         return <Dashboard />;
       case "jobs":
-        return <div>jobs</div>;
+        return <Jobs />;
       case "profile":
         return <Profile />;
       case "settings":
         return <div>settings</div>;
       case "courses":
         return <Courses />;
+      case "chat":
+        return <Chats />;
     }
   };
 

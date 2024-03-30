@@ -15,16 +15,21 @@ exports.findPeople = async (req, res) => {
 
 
 exports.getConversation = async (req, res) => {
+  console.log("hiii");
   let { id1, id2 } = req.query;
   if (!id1 || !id2) res.status(404).json({ message: 'No userId found' });
   if (id1 > id2) id2 = [id1, (id1 = id2)][0];
   const cvs = await Conversation.findOne({
-    firstId: id1,
-    secondId: id2
+    $or: [
+      { firstId: id1, secondId: id2 },
+      { firstId: id2, secondId: id1 }
+    ]
   }).lean();
+  
   if (cvs) return res.status(200).json({ conversation: cvs });
   const firstUser = await User.findById(id1).lean();
   const secondUser = await User.findById(id2).lean();
+  console.log(secondUser);
   const newCvs = Conversation({
     firstId: id1,
     secondId: id2,
@@ -57,7 +62,7 @@ exports.getConversationList = async (req, res) => {
 };
 
 exports.getMessages = async (req, res) => {
-  const { cid, page, last } = req.query;
+  const { cid } = req.query;
   if (!cid) return res.status(400).json({ message: 'Missing conversation id' });
   const conversation = await Conversation.findById(cid)
     .select('messages')
@@ -108,3 +113,37 @@ exports.sendMessage = async (req, res) => {
     res.status(500).json({ message: 'Server error when adding new message' });
   }
 };
+
+
+exports.getUsersWithConversations = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    if (!userId) {
+      return res.status(400).json({ message: 'Missing user ID in request body' });
+    }
+
+    // Find all conversations where the given user ID appears in either firstId or secondId
+    const conversations = await Conversation.find({
+      $or: [{ firstId: userId }, { secondId: userId }]
+    });
+
+    // Extract unique user IDs from conversations
+    const userIDs = new Set();
+    conversations.forEach(conversation => {
+      userIDs.add(conversation.firstId.toString());
+      userIDs.add(conversation.secondId.toString());
+    });
+
+    // Convert the set of user IDs to an array
+    const uniqueUserIDs = Array.from(userIDs);
+
+    // Query the User model to get user details
+    const users = await User.find({ _id: { $in: uniqueUserIDs } });
+
+    return res.status(200).json({ users: users });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error when fetching users with conversations' });
+  }
+};
+

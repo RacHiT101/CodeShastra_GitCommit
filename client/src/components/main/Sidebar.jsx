@@ -89,6 +89,21 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         </Card>
         <Card
           className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
+          onClick={() => setActiveSection("chat")}
+        >
+          <CardBody>
+            <div
+              className={`flex gap-2 items-center justify-start ${
+                activeSection === "chat" ? "text-[#0049FC]" : ""
+              }`}
+            >
+              <IoIosSettings className="text-2xl" />
+              Chat
+            </div>
+          </CardBody>
+        </Card>
+        <Card
+          className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
           onClick={() => setActiveSection("settings")}
         >
           <CardBody>
