@@ -5,13 +5,15 @@ import { Avatar } from "@chakra-ui/react";
 
 const Userschats = (props) => {
   const [chats, setChats] = useState([]);
-  const { setFirstId } = useContext(Chatcontext2);
+  const { firstId,setFirstId } = useContext(Chatcontext2);
+  const user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
     const fetchUserChats = async () => {
+      console.log(typeof(user._id));
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/chats/conversation-list?id=6607afd4e03d1e75f9fdffe9"
+          `http://localhost:5001/api/chats/conversation-list?id=${user._id}`
         );
         setChats(response.data.list);
       } catch (error) {
@@ -46,7 +48,7 @@ const Userschats = (props) => {
               src="https://bit.ly/prosper-baba"
             />
             <div className="w-full">
-              <span className="">{chat.firstUserName}</span>
+              <span className="">{chats[0]?.firstId===user._id?chat?.secondUserName:chat?.firstUserName}</span>
               <div className="w-full flex justify-between">
                 <p className="">
                   {chat.lastMessage.slice(0, 20)}

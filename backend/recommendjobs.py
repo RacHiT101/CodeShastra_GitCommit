@@ -11,7 +11,7 @@ import certifi
 from bson.objectid import ObjectId
 import json
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key="AIzaSyAJW_Q8F8dnfcMry56jNf1u2DNYJi2oGUs")
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -145,6 +145,7 @@ def input_pdf_text(uploaded_file):
 
 
 @app.route('/process', methods=['POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def process_resume():
     jd = request.form.get("jd")
     uploaded_file = request.files['file']
@@ -168,15 +169,18 @@ def process_resume():
 
         # Parse response
         try:
-            result_json = json.loads(response)
-            return jsonify(result_json)
+            print(response,type(response))
+            # result_json = json.loads(response)
+            # return jsonify(result_json)
+            return response, 200
         except json.JSONDecodeError:
             return jsonify({"error": "Unable to parse response."}), 400
     else:
         return jsonify({"error": "No file uploaded."}), 400
 
+
 @app.route('/recommend', methods=['POST'])
-@cross_origin()
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def recommend_jobs():
     user_data = request.json
     user_skills = user_data.get('skills', [])
@@ -194,6 +198,7 @@ def recommend_jobs():
 #     return jsonify(converted_data)
 
 @app.route('/recommend/users', methods=['POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def recommend_users():
     # Get the job object from the request body
     job = request.get_json()

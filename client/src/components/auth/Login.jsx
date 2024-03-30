@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoginImage from "../../assets/hr.png";
+import LoginImage from "../../assets/signin.png";
 import {
   InputGroup,
   Stack,
@@ -22,18 +22,17 @@ const Login = ({ setAuthType }) => {
 
   const handleLogin = () => {
     axios
-      .post("http://localhost:5001/api/recruiters/login", { email, password })
+      .post("http://localhost:5001/api/login", { email, password })
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/recruiter");
+        navigate("/");
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   };
-  
   return (
     <div className="w-full h-full flex">
       <img
