@@ -32,6 +32,7 @@ import Job4 from "../../assets/Job4.png";
 import { AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
 import { BsStars } from "react-icons/bs";
 import VideoApp from "../../VideoApp";
+import { NavLink } from "react-router-dom";
 // import VideoApp from "../../VideoApp";
 import ReactMarkdown from "react-markdown";
 
@@ -154,6 +155,8 @@ const Dashboard = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  console.log(jobToDisplay);
+
   return (
     <div className="flex justify-evenly h-full w-full p-10 gap-5">
       <div className="flex flex-col gap-4 justify-evenly w-full h-full">
@@ -197,8 +200,8 @@ const Dashboard = () => {
             />
           </AreaChart>
         </div>
-        <div className="stats h-full w-full grid grid-cols-2 gap-5">
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+        <div className="stats h-full w-full grid grid-cols-2 gap-4">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl">
             <div className="text-lg">Potential Jobs</div>
             <div
               style={{
@@ -219,7 +222,7 @@ const Dashboard = () => {
               13
             </div>
           </div>
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl ">
             <div className="text-lg">Matched Jobs</div>
             <div
               style={{
@@ -240,7 +243,7 @@ const Dashboard = () => {
               9
             </div>
           </div>
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl">
             <div className="text-lg">Search Appearance</div>
             <div
               style={{
@@ -261,7 +264,7 @@ const Dashboard = () => {
               329
             </div>
           </div>
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl">
             <div className="text-lg">Applied Jobs</div>
             <div
               style={{
@@ -299,26 +302,6 @@ const Dashboard = () => {
             {showJobType === "recommended" ? "Show All" : "Show Recommended"}
           </span>
         </div>
-        {/* {<Stat className="statschild hover:shadow-2xl hover:shadow-[#57575730] w-full p-4 bg-white flex items-center justify-between rounded-xl">
-          <div className="flex items-center justify-around ">
-            <img
-              src="./static/images/grameenphone.jpeg"
-              className="mr-10 h-12"
-            />
-            <div className="flex flex-col">
-              <div className="text-lg font-bold">Product Designer</div>
-              <div className="text-xs w-full">
-                Gramphone
-                <span className="ms-5 text-xs text-gray-500">
-                  Dhaka, Bangladesh
-                </span>
-              </div>
-              <div className="font-bold text-[#0049FC] text-sm cursor-pointer mt-3">
-                View Job
-              </div>
-            </div>
-          </div>
-        </Stat>} */}
 
         {showJobType === "recommended" && (
           <div className="flex flex-col gap-5">
@@ -407,7 +390,12 @@ const Dashboard = () => {
               <div className="w-full mt-2 text-gray-700 flex gap-2 items-center justify-center">
                 <img src={getRandomImage()} className=" h-7" />
                 <div className="flex justify-between w-full items-center">
-                  <div className="text-lg">{jobToDisplay?.recruiterName}</div>
+                  <NavLink
+                    to={`/${jobToDisplay?.recruiter}`}
+                    className="text-lg"
+                  >
+                    {jobToDisplay?.recruiterName}
+                  </NavLink>
                   <div className="text-gray-500 ms-3 text-sm">
                     {jobToDisplay?.location}
                   </div>
@@ -466,7 +454,7 @@ const Dashboard = () => {
               ref={fileInputRef}
             />
             <Button colorScheme="blue" mr={3} onClick={handleButtonClick}>
-              <BsStars className="mr-2" />
+              <BsStars className="mr-2"  />
               Check my chances
             </Button>
             <Button

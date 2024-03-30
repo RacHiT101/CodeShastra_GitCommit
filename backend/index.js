@@ -9,6 +9,7 @@ const recruiterRoutes = require('./routes/recruiterRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
 const chatRoutes = require('./routes/chatRoute');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 dotenv.config();
@@ -32,6 +33,7 @@ app.use('/api', recruiterRoutes);
 app.use('/api', jobRoutes);
 app.use('/api', applicationRoutes);
 app.use('/api', chatRoutes);
+app.use('/reviews', reviewRoutes);
 
 const PORT = process.env.PORT || 5001;
 

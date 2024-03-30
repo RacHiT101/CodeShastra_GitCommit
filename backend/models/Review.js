@@ -6,7 +6,7 @@ const reviewSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    productId: {
+    recruiterId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
       required: true,
