@@ -88,9 +88,9 @@ const Register = ({ setAuthType }) => {
     useState(areasOfInterestOptions);
 
   const handleClick = (area) => {
-    setAreasOfInterest([...areasOfInterest, area]);
-    setFilteredAreasOfInterestOptions(
-      filteredAreasOfInterestOptions.filter((option) => option !== area)
+    setAreasOfInterest((prevAreas) => [...prevAreas, area]);
+    setFilteredAreasOfInterestOptions((prevOptions) =>
+      prevOptions.filter((option) => option !== area)
     );
   };
   const navigate = useNavigate();
@@ -98,7 +98,7 @@ const Register = ({ setAuthType }) => {
   const handleRegister = () => {
     axios
       .post("http://localhost:5001/api/register", {
-        name: name,
+        name: username,
         contact: phone,
         email,
         skills: areasOfInterest,
@@ -112,6 +112,9 @@ const Register = ({ setAuthType }) => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
         navigate("/");
+      })
+      .then(() => {
+        onClose();
       })
       .catch((err) => {
         console.log(err);
@@ -234,16 +237,14 @@ const Register = ({ setAuthType }) => {
               <div className="flex items-center gap-2 w-full">
                 <div
                   className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
-                  onClick={setGender("male")}
+                  onClick={() => setGender("male")}
                 >
                   <img src={man} alt="man" className="w-5 h-5 rounded-full" />
                   Male
                 </div>
                 <div
                   className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
-                  onClick={() => {
-                    setGender("female");
-                  }}
+                  onClick={() => setGender("female")}
                 >
                   <img
                     src={woman}
@@ -418,22 +419,9 @@ const Register = ({ setAuthType }) => {
               color={"white"}
               mr={3}
               onClick={() => {
-                if (
-                  !username ||
-                  !email ||
-                  !password ||
-                  !city ||
-                  !studentType.type ||
-                  !studentType.course ||
-                  !studentType.name ||
-                  !studentType.stream ||
-                  !studentType.startyear ||
-                  !studentType.endyear ||
-                  !areasOfInterest.length
-                )
+                if (!username || !email || !password)
                   return alert("Please fill all the details");
                 handleRegister();
-                onClose();
               }}
             >
               Submit
