@@ -57,16 +57,18 @@ const Login = ({ setAuthType }) => {
               _hover={{
                 backgroundColor: "#0049FC99",
               }}
-              disabled={true}
             >
               Login
             </Button>
           </Stack>
-          <div
-            className="text-[#666666] mt-5 mx-auto gap-5"
-            onClick={() => setAuthType("register")}
-          >
-            Create an account
+          <div className="text-[#666666] mt-5 mx-auto flex items-center justify-center gap-3">
+            <div className="text-xs">New Job Seeker?</div>
+            <div
+              className="text-xs text-[#0049FC99] cursor-pointer hover:text-[#0049FC]"
+              onClick={() => setAuthType("register")}
+            >
+              Create Account
+            </div>
           </div>
         </div>
       </div>
