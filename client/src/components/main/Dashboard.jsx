@@ -33,6 +33,7 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
 import { BsStars } from "react-icons/bs";
 import VideoApp from "../../VideoApp";
 // import VideoApp from "../../VideoApp";
+import ReactMarkdown from "react-markdown";
 
 const Dashboard = () => {
   const [allJobs, setAllJobs] = useState([]);
@@ -45,22 +46,25 @@ const Dashboard = () => {
 
   const toast = useToast();
 
+  const [analysis, setAnalysis] = useState("");
+
   const handleFileChange = (event) => {
     console.log(event.target.files[0]);
     setFile(event.target.files[0]);
     const formData = new FormData();
-    formData.append('file', event.target.files[0]);
+    formData.append("file", event.target.files[0]);
 
     // You can add additional fields to the form data if needed
-    formData.append('jd', "Your job description here");
+    formData.append("jd", "Your job description here");
 
-    axios.post('http://localhost:5000/process', formData)
-      .then(response => {
+    axios
+      .post("http://localhost:5000/process", formData)
+      .then((response) => {
         console.log(response.data);
-        // Handle response here
+        setAnalysis(response.data);
       })
-      .catch(error => {
-        console.error('Error uploading file:', error);
+      .catch((error) => {
+        console.error("Error uploading file:", error);
       });
   };
 
@@ -448,9 +452,19 @@ const Dashboard = () => {
                 />
               </InputGroup>
             </div>
+            {analysis && (
+              <div className="">
+                <ReactMarkdown>{analysis}</ReactMarkdown>
+              </div>
+            )}
           </ModalBody>
           <ModalFooter>
-            <input type="file" style={{ display: 'none' }} onChange={handleFileChange} ref={fileInputRef} />
+            <input
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+              ref={fileInputRef}
+            />
             <Button colorScheme="blue" mr={3} onClick={handleButtonClick}>
               <BsStars className="mr-2" />
               Check my chances
@@ -472,7 +486,6 @@ const Dashboard = () => {
                   <VideoApp />
       </Box> */}
       {/* <button onClick={() => setShowVideoApp(true)}>Show Video App</button> */}
-
     </div>
   );
 };
