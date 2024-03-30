@@ -5,7 +5,7 @@ import { Avatar } from "@chakra-ui/react";
 
 const Userschats = (props) => {
   const [chats, setChats] = useState([]);
-  const { setFirstId } = useContext(Chatcontext2);
+  const { firstId,setFirstId } = useContext(Chatcontext2);
   const user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Userschats = (props) => {
               src="https://bit.ly/prosper-baba"
             />
             <div className="w-full">
-              <span className="">{chat.firstUserName}</span>
+              <span className="">{chats[0]?.firstId===user._id?chat?.secondUserName:chat?.firstUserName}</span>
               <div className="w-full flex justify-between">
                 <p className="">
                   {chat.lastMessage.slice(0, 20)}
