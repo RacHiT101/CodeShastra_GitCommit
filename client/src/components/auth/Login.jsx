@@ -11,10 +11,28 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setAuthType }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    axios
+      .post("http://localhost:5001/api/login", { email, password })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
   return (
     <div className="w-full h-full flex">
       <img
@@ -69,6 +87,7 @@ const Login = ({ setAuthType }) => {
               _hover={{
                 backgroundColor: "#0049FC99",
               }}
+              onClick={handleLogin}
             >
               Login
             </Button>
