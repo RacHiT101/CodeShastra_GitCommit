@@ -242,89 +242,93 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-      <div className="w-1/2 flex flex-col h-full overflow-y-auto rounded-xl shadow-md shadow-gray-200 bg-white p-4">
-        <div className="flex mb-4 items-center justify-between">
-          <div className="">Jobs for you</div>
-          <span
-            className="text-sm font-bold text-[#0049FC] cursor-pointer"
-            onClick={() => {
-              setShowJobType(
-                showJobType === "recommended" ? "all" : "recommended"
-              );
-            }}
-          >
-            {showJobType === "recommended" ? "Show All" : "Show Recommended"}
-          </span>
+      <div className="w-1/2 h-full flex gap-3 flex-col">
+        <div className="w-full flex flex-col h-full rounded-xl shadow-md shadow-gray-200 bg-white p-4">
+          <div className="flex h-12 mb-4 items-center justify-between">
+            <div className="">Jobs for you</div>
+            <span
+              className="text-sm font-bold text-[#0049FC] cursor-pointer"
+              onClick={() => {
+                setShowJobType(
+                  showJobType === "recommended" ? "all" : "recommended"
+                );
+              }}
+            >
+              {showJobType === "recommended" ? "Show All" : "Show Recommended"}
+            </span>
+          </div>
+          <div className="flex flex-col h-full overflow-y-auto">
+            {showJobType === "recommended" && (
+              <div className="flex flex-col gap-5">
+                {recommendedJobs?.map((job, index) => (
+                  <Stat
+                    key={index}
+                    className="statschild shadow-lg hover:shadow-[#57575760] cursor-pointer w-full p-4 bg-white flex items-center justify-between rounded-xl"
+                  >
+                    <div className="flex w-full items-center ">
+                      <img src={getRandomImage()} className="mr-10 h-12" />
+                      <div className="flex w-full flex-col">
+                        <div className="text-lg font-bold">{job.title}</div>
+                        <div className="text-sm font-bold w-full">
+                          {job.company || "Amazon"}
+                          <span className="ms-10 text-xs font-normal text-gray-500">
+                            {job.location}
+                          </span>
+                        </div>
+                        <div className="w-full flex mt-3 justify-between items-center">
+                          <div
+                            className="font-bold text-[#0049FC] text-sm cursor-pointer"
+                            onClick={onOpen}
+                          >
+                            View Job
+                          </div>
+                          <div className="text-lg font-bold">{job.salary}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </Stat>
+                ))}
+              </div>
+            )}
+            {showJobType === "all" && (
+              <div className="flex flex-col gap-5 w-full">
+                {allJobs?.map((job, index) => (
+                  <Stat
+                    key={index}
+                    className="statschild shadow-lg hover:shadow-[#57575760] cursor-pointer w-full p-4 bg-white flex items-center justify-between rounded-xl"
+                  >
+                    <div className="flex w-full items-center ">
+                      <img src={getRandomImage()} className="mr-10 h-12" />
+                      <div className="flex w-full flex-col">
+                        <div className="text-lg font-bold">
+                          {job.title || "Hello"}
+                        </div>
+                        <div className="text-sm font-bold w-full">
+                          {job.company || "Amazon"}
+                          <span className="ms-10 text-xs font-normal text-gray-500">
+                            {job.location}
+                          </span>
+                        </div>
+                        <div className="w-full flex mt-3 justify-between items-center">
+                          <div
+                            className="font-bold text-[#0049FC] text-sm cursor-pointer"
+                            onClick={() => {
+                              console.log(job);
+                            }}
+                          >
+                            View Job
+                          </div>
+                          <div className="text-lg font-bold">{job.salary}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </Stat>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-        {showJobType === "recommended" && (
-          <div className="flex flex-col gap-5">
-            {recommendedJobs?.map((job, index) => (
-              <Stat
-                key={index}
-                className="statschild shadow-lg hover:shadow-[#57575760] cursor-pointer w-full p-4 bg-white flex items-center justify-between rounded-xl"
-              >
-                <div className="flex w-full items-center ">
-                  <img src={getRandomImage()} className="mr-10 h-12" />
-                  <div className="flex w-full flex-col">
-                    <div className="text-lg font-bold">{job.title}</div>
-                    <div className="text-sm font-bold w-full">
-                      {job.company || "Amazon"}
-                      <span className="ms-10 text-xs font-normal text-gray-500">
-                        {job.location}
-                      </span>
-                    </div>
-                    <div className="w-full flex mt-3 justify-between items-center">
-                      <div
-                        className="font-bold text-[#0049FC] text-sm cursor-pointer"
-                        onClick={onOpen}
-                      >
-                        View Job
-                      </div>
-                      <div className="text-lg font-bold">{job.salary}</div>
-                    </div>
-                  </div>
-                </div>
-              </Stat>
-            ))}
-          </div>
-        )}
-        {showJobType === "all" && (
-          <div className="flex flex-col gap-5 w-full">
-            {allJobs?.map((job, index) => (
-              <Stat
-                key={index}
-                className="statschild shadow-lg hover:shadow-[#57575760] cursor-pointer w-full p-4 bg-white flex items-center justify-between rounded-xl"
-              >
-                <div className="flex w-full items-center ">
-                  <img src={getRandomImage()} className="mr-10 h-12" />
-                  <div className="flex w-full flex-col">
-                    <div className="text-lg font-bold">
-                      {job.title || "Hello"}
-                    </div>
-                    <div className="text-sm font-bold w-full">
-                      {job.company || "Amazon"}
-                      <span className="ms-10 text-xs font-normal text-gray-500">
-                        {job.location}
-                      </span>
-                    </div>
-                    <div className="w-full flex mt-3 justify-between items-center">
-                      <div
-                        className="font-bold text-[#0049FC] text-sm cursor-pointer"
-                        onClick={() => {
-                          console.log(job);
-                        }}
-                      >
-                        View Job
-                      </div>
-                      <div className="text-lg font-bold">{job.salary}</div>
-                    </div>
-                  </div>
-                </div>
-              </Stat>
-            ))}
-          </div>
-        )}
+        <div className="w-full flex flex-col h-1/3 overflow-y-auto rounded-xl shadow-md shadow-gray-200 bg-white p-4"></div>
       </div>
       <Modal
         blockScrollOnMount={false}
