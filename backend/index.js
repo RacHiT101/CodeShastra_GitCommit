@@ -1,45 +1,36 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cors = require("cors");
-const { Server } = require("socket.io");
-var http = require('http');
+// app.js
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const userRoutes = require('./routes/userRoutes');
+const recruiterRoutes = require('./routes/recruiterRoutes');
+const jobRoutes = require('./routes/jobRoutes');
+const applicationRoutes = require('./routes/applicationRoutes');
 
 const app = express();
-const userRoute = require("./routes/user.js");
-const authRoute = require("./routes/auth.js");
-const productRoute = require("./routes/product.js");
-const cartRoute = require("./routes/cart.js");
-const orderRoute = require("./routes/order.js");
-const paymentRoute = require("./routes/pay.js");
-const reviewRoute = require("./routes/review.js");
 dotenv.config();
+
 app.use(express.json());
 app.use(cors());
-/* MONGOOSE SETUP */
-const PORT = 5001 || 9000;
-mongoose
-  .connect(
-    "mongodb+srv://priyankaa250303:srcn1224@cluster0.xsffsnb.mongodb.net/?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
-  })
-  .catch((error) => console.log(`${error} did not connect`));
 
-app.use("/user", userRoute);
-app.use("/auth", authRoute);
-app.use("/products", productRoute);
-// app.use("/customer", custRoute);
-app.use("/cart", cartRoute);
-app.use("/order", orderRoute);
-app.use("/payment", paymentRoute);
-app.use("/review", reviewRoute);
+// Mongoose connection setup
+mongoose.connect("mongodb+srv://rachitgala05:rachitgala05@cluster0.j1uqmok.mongodb.net/", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('MongoDB connected successfully');
+}).catch(err => {
+  console.error('MongoDB connection error:', err);
+});
 
+// Routes
+app.use('/api', userRoutes);
+app.use('/api', recruiterRoutes);
+app.use('/api', jobRoutes);
+app.use('/api', applicationRoutes);
 
-
-
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
