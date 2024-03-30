@@ -53,39 +53,40 @@ const Profile = () => {
       </div>
 
       <div className="flex justify-evenly w-full p-10 gap-5 rounder-xl">
-        <div className="stats w-1/5 bg-white flex flex-col justify-start items-start rounded-xl">
-        <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Information' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Information')}>
+        <div className="stats w-1/5  flex flex-col justify-start items-start rounded-xl">
+        <div className={`p-1 w-full rounded-xl ${selectedOption === 'Information' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Information')}>
             <div className="option flex items-center m-5 rounded-xl " style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><BsFillPersonFill style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Information</span>
             </div>
           </div>
-          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Experiences' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Experiences')}>
+          <div className={`p-1 w-full rounded-xl ${selectedOption === 'Experiences' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Experiences')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><BiSolidBriefcase style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Experiences</span>
             </div>
           </div>
-          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Education' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Education')}>
+          <div className={`p-1 w-full rounded-xl ${selectedOption === 'Education' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Education')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><GiTrophy style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Education</span>
             </div>
           </div>
-          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Skills' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Skills')}>
+          <div className={`p-1 w-full rounded-xl ${selectedOption === 'Skills' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Skills')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><PiCrownFill style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Skills</span>
             </div>
           </div>
-          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Attachments' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Attachments')}>
+          <div className={`p-1 w-full rounded-xl ${selectedOption === 'Attachments' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Attachments')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><IoDocumentText style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Attachments</span>
             </div>
           </div>
         </div>
-        <div className="w-4/5 h-full bg-white p-4 rounded-xl" style={{ border: "2px solid black" }}>
+        <div className="w-4/5 h-full  p-4 rounded-xl" style={{  }}>
+        {/* boxShadow:"0px 4px 6px rgba(0, 0, 0, 0.3)" */}
           {renderContent()}
         </div>
       </div>

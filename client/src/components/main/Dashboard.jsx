@@ -252,26 +252,6 @@ const Dashboard = () => {
             {showJobType === "recommended" ? "Show All" : "Show Recommended"}
           </span>
         </div>
-        {/* {<Stat className="statschild hover:shadow-2xl hover:shadow-[#57575730] w-full p-4 bg-white flex items-center justify-between rounded-xl">
-          <div className="flex items-center justify-around ">
-            <img
-              src="./static/images/grameenphone.jpeg"
-              className="mr-10 h-12"
-            />
-            <div className="flex flex-col">
-              <div className="text-lg font-bold">Product Designer</div>
-              <div className="text-xs w-full">
-                Gramphone
-                <span className="ms-5 text-xs text-gray-500">
-                  Dhaka, Bangladesh
-                </span>
-              </div>
-              <div className="font-bold text-[#0049FC] text-sm cursor-pointer mt-3">
-                View Job
-              </div>
-            </div>
-          </div>
-        </Stat>} */}
 
         {showJobType === "recommended" && (
           <div className="flex flex-col gap-5">
