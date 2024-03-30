@@ -21,8 +21,10 @@ const MainModule = () => {
 
   return (
     <div className="w-full h-full overflow-y-auto overflow-x-hidden flex items-center justify-center">
-      <Sidebar />
-
+      <Sidebar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
       <div className="flex flex-col relative pt-10  h-full w-full">
         <Navbar />
         <div className="h-full w-full overflow-y-auto">{getSection()}</div>
