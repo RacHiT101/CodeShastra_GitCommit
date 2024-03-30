@@ -9,7 +9,7 @@ import { IoIosSettings } from "react-icons/io";
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   return (
-    <div className="h-full w-80 shadow-sm shadow-gray-300 overflow-y-auto bg-white flex flex-col justify-center items-center">
+    <div className="h-screen w-80 shadow-sm shadow-gray-300 overflow-y-auto bg-white flex flex-col justify-center items-center">
       <div className="flex gap-3 items-center">
         <img src={Logo} alt="Logo" className="w-12 h-12" />
         <div className="text-2xl text-[#0049FC] font-semibold">
@@ -52,6 +52,21 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             >
               <PiSuitcaseSimpleFill className="text-2xl" />
               Jobs
+            </div>
+          </CardBody>
+        </Card>
+        <Card
+          className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
+          onClick={() => setActiveSection("courses")}
+        >
+          <CardBody>
+            <div
+              className={`flex gap-2 items-center justify-start ${
+                activeSection === "courses" ? "text-[#0049FC]" : ""
+              }`}
+            >
+              <PiSuitcaseSimpleFill className="text-2xl" />
+              Courses
             </div>
           </CardBody>
         </Card>
