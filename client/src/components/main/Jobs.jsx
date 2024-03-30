@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import {
   Tabs,
@@ -48,12 +49,14 @@ const Jobs = () => {
     await axios
       .get(`http://localhost:5001/api/users/${user._id}/applications`)
       .then((res) => {
-        setAppliedJobs(res.data.map((item) => item.jobId));
+        setAppliedJobs(res.data.map((item) => item.jobId)); // This line sets appliedJobs state
+        console.log(appliedJobs); // This line logs the appliedJobs state
       })
       .catch((err) => {
         console.log(err.response.data);
       });
   };
+  
 
   const getRecommendedJobs = async () => {
     const skills = JSON.parse(localStorage.getItem("user"))?.skills;
@@ -153,6 +156,7 @@ const Jobs = () => {
         });
       });
   };
+  console.log(filteredAllJobs);
 
   return (
     <div className="w-full h-full pt-10 p-5 flex items-center justify-center">
