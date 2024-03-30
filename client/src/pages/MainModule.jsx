@@ -3,6 +3,7 @@ import Sidebar from "../components/main/Sidebar";
 import Navbar from "../components/main/Navbar";
 import Dashboard from "../components/main/Dashboard";
 import Profile from "../components/main/Profile";
+import Courses from "../components/main/Courses";
 
 const MainModule = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -16,6 +17,8 @@ const MainModule = () => {
         return <Profile />;
       case "settings":
         return <div>settings</div>;
+      case "courses":
+        return <Courses />;
     }
   };
 
