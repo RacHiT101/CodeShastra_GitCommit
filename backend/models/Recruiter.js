@@ -7,7 +7,7 @@ const recruiterSchema = new mongoose.Schema({
   name: { type: String, required: true },
   createdJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Job' }],
   contact: { type: String },
-  reviews: { type: String },
+  reviews: [{ type: String }], // Change to array of strings
   companyName: { type: String }
 });
 
