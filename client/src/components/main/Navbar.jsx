@@ -5,8 +5,9 @@ import { IoMdMail } from "react-icons/io";
 import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
-    <div className="w-full px-10 absolute top-0 right-0 h-16 bg-white flex items-center justify-between">
+    <div className="w-full px-10 z-50 absolute top-0 right-0 h-16 bg-white flex items-center justify-between">
       <div className="w-[60%]">
         <InputGroup>
           <InputLeftElement pointerEvents="none">
@@ -28,7 +29,7 @@ const Navbar = () => {
             name="Prosper Otemuyiwa"
             src="https://bit.ly/prosper-baba"
           />
-          <div className="ml-3">Prosper</div>
+          <div className="ml-3">{user?.name}</div>
           <ChevronDownIcon className="text-[#0049FC]" w={5} />
         </div>
       </div>
