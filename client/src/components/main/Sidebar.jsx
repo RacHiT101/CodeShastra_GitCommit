@@ -5,12 +5,14 @@ import { MdDashboard } from "react-icons/md";
 import { PiSuitcaseSimpleFill } from "react-icons/pi";
 import { FaUser } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
+import { FaRegBookmark } from "react-icons/fa";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
 
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   return (
-    <div className="h-screen w-80 shadow-sm shadow-gray-300 overflow-y-auto bg-white flex flex-col justify-center items-center">
+    <div className="h-full w-80 shadow-sm shadow-gray-300 py-6 bg-white flex flex-col justify-center items-center">
       <div className="flex gap-3 items-center">
         <img src={Logo} alt="Logo" className="w-12 h-12" />
         <div className="text-2xl text-[#0049FC] font-semibold">
@@ -24,7 +26,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         className="mt-5"
       />
       <div className="text-lg font-semibold mt-3">Hello {user?.name}</div>
-      <div className="w-full px-5 mt-5 flex flex-col gap-2">
+      <div className="w-full px-5 h-full  overflow-y-auto mt-5 flex flex-col gap-2">
         <Card
           className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
           onClick={() => setActiveSection("dashboard")}
@@ -67,7 +69,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 activeSection === "courses" ? "text-[#0049FC]" : ""
               }`}
             >
-              <PiSuitcaseSimpleFill className="text-2xl" />
+              <FaRegBookmark className="text-2xl" />
               Courses
             </div>
           </CardBody>
@@ -97,7 +99,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
                 activeSection === "chat" ? "text-[#0049FC]" : ""
               }`}
             >
-              <IoIosSettings className="text-2xl" />
+              <IoChatboxEllipsesOutline className="text-2xl" />
               Chat
             </div>
           </CardBody>

@@ -12,12 +12,11 @@ const Chats = () => {
   }, [])
 
   return (
-    <div className='flex pt-10 w-full'>
-      <div className='flex flex-col h-screen w-full'>
-        {/* <Navbar /> */}
-        <div className="w-[93%] ml-auto flex overflow-hidden flex-1">
-          <div style={{ width: "70vw", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div id='chatcont'>
+    <div className="flex pt-6 h-full w-full">
+      <div className="flex flex-col h-full w-full">
+        <div className="w-full flex overflow-hidden flex-1">
+          <div className="w-full h-full flex justify-center items-center bg-gray-100">
+            <div id="chatcont">
               <Sidebar user={user} imagesrc={imagesrc} />
               <Openchat user={user} />
             </div>
@@ -25,7 +24,7 @@ const Chats = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Chats

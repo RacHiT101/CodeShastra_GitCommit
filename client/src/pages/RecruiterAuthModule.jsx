@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Navbar from "../components/recruiterAuth/Navbar";
 import Login from "../components/recruiterAuth/Login";
 import Register from "../components/recruiterAuth/Register";
+import Navbar from "../components/recruiterAuth/Navbar";
 
-const AuthModule = () => {
+const RecruiterAuthModule = () => {
   const [authType, setAuthType] = useState("login");
   return (
     <div className="w-full h-full overflow-y-auto overflow-x-hidden flex items-center justify-center">
@@ -21,4 +21,4 @@ const AuthModule = () => {
   );
 };
 
-export default AuthModule;
+export default RecruiterAuthModule;
