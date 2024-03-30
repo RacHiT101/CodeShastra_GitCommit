@@ -42,7 +42,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             </div>
           </CardBody>
         </Card>
-
         <Card
           className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
           onClick={() => setActiveSection("reviews")}
@@ -60,21 +59,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
         </Card>
         <Card
           className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
-          onClick={() => setActiveSection("profile")}
-        >
-          <CardBody>
-            <div
-              className={`flex gap-2 items-center justify-start ${
-                activeSection === "profile" ? "text-[#0049FC]" : ""
-              }`}
-            >
-              <FaUser className="text-2xl" />
-              Profile
-            </div>
-          </CardBody>
-        </Card>
-        <Card
-          className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
           onClick={() => setActiveSection("chat")}
         >
           <CardBody>
@@ -85,21 +69,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             >
               <IoChatboxEllipsesOutline className="text-2xl" />
               Chat
-            </div>
-          </CardBody>
-        </Card>
-        <Card
-          className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
-          onClick={() => setActiveSection("settings")}
-        >
-          <CardBody>
-            <div
-              className={`flex gap-2 items-center justify-start ${
-                activeSection === "settings" ? "text-[#0049FC]" : ""
-              }`}
-            >
-              <IoIosSettings className="text-2xl" />
-              Settings
             </div>
           </CardBody>
         </Card>
