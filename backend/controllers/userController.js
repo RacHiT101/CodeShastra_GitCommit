@@ -56,3 +56,32 @@ exports.loginUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+// Function to fetch all users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+// Function to update a user by ID
+exports.updateUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const userDataToUpdate = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(userId, userDataToUpdate, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
