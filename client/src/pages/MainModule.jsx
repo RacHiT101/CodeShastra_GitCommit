@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Sidebar from "../components/main/Sidebar";
 import Navbar from "../components/main/Navbar";
+import Dashboard from "../components/main/Dashboard";
 
 const MainModule = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
   const getSection = () => {
     switch (activeSection) {
       case "dashboard":
-        return <div>dashboard</div>;
+        return <div><Dashboard></Dashboard></div>;
       case "jobs":
         return <div>jobs</div>;
       case "profile":
