@@ -1,6 +1,6 @@
 # app.py (Flask Server)
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -9,7 +9,8 @@ from bson.objectid import ObjectId
 import json
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 client = MongoClient('mongodb+srv://rachitgala05:rachitgala05@cluster0.j1uqmok.mongodb.net/test?retryWrites=true&w=majority', tlsCAFile=certifi.where())
 
@@ -124,6 +125,7 @@ def get_user_recommendations(job):
     return recommended_users
 
 @app.route('/recommend', methods=['POST'])
+@cross_origin()
 def recommend_jobs():
     user_data = request.json
     user_skills = user_data.get('skills', [])
@@ -149,5 +151,6 @@ def recommend_users():
     converted_data = convert_objectid_to_string(recommended_users)
     return jsonify(converted_data)
 
+# @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 if __name__ == '__main__':
     app.run(debug=True)

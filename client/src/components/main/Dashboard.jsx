@@ -55,7 +55,7 @@ const Dashboard = () => {
     //     .catch((err) => {
     //       console.log(err.response.data);
     //     });
-    await fetch("http://localhost:5000/recommended", {
+    await fetch("http://localhost:5000/recommend", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
