@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Stat,
   StatLabel,
@@ -38,10 +38,36 @@ const Dashboard = () => {
   const [allJobs, setAllJobs] = useState([]);
   const [recommendedJobs, setRecommendedJobs] = useState([]);
   const [showVideoApp, setShowVideoApp] = useState(false);
+  const [file, setFile] = useState(null);
+  const fileInputRef = useRef(null);
 
   const [showJobType, setShowJobType] = useState("recommended");
 
   const toast = useToast();
+
+  const handleFileChange = (event) => {
+    console.log(event.target.files[0]);
+    setFile(event.target.files[0]);
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+
+    // You can add additional fields to the form data if needed
+    formData.append('jd', "Your job description here");
+
+    axios.post('http://localhost:5000/process', formData)
+      .then(response => {
+        console.log(response.data);
+        // Handle response here
+      })
+      .catch(error => {
+        console.error('Error uploading file:', error);
+      });
+  };
+
+  const handleButtonClick = () => {
+    // Trigger click event on file input
+    fileInputRef.current.click();
+  };
 
   const getRandomImage = () => {
     const images = [Job1, Job2, Job3, Job4];
@@ -424,14 +450,9 @@ const Dashboard = () => {
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button
-              colorScheme="blue"
-              mr={3}
-              onClick={() => {
-                alert("Feature not available yet");
-              }}
-            >
-              <BsStars className="mr-2"/>
+            <input type="file" style={{ display: 'none' }} onChange={handleFileChange} ref={fileInputRef} />
+            <Button colorScheme="blue" mr={3} onClick={handleButtonClick}>
+              <BsStars className="mr-2" />
               Check my chances
             </Button>
             <Button
@@ -451,7 +472,7 @@ const Dashboard = () => {
                   <VideoApp />
       </Box> */}
       {/* <button onClick={() => setShowVideoApp(true)}>Show Video App</button> */}
-      
+
     </div>
   );
 };
