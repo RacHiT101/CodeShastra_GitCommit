@@ -298,7 +298,7 @@ const Courses = () => {
           <div className="flex flex-col h-full overflow-y-auto">
             <div className="flex flex-col gap-5">
               {courseNames.map((course) => (
-                <div style={{fontWeight:"medium",fontSize:"1.15rem",background: selectedCourse === course ? "#add8e6" : "inherit",}}
+                <div style={{fontWeight:"medium",fontSize:"1.15rem",background: selectedCourse === course ? "#add8e6" : "inherit"}}
                   className={`text-center p-4 cursor-pointer rounded-xl ${
                     selectedCourse === course ? "text-blue-500" : "inherit"
                   }`}
