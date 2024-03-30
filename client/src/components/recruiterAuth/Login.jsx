@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoginImage from "../../assets/signin.png";
+import LoginImage from "../../assets/hr.png";
 import {
   InputGroup,
   Stack,
@@ -27,7 +27,7 @@ const Login = ({ setAuthType }) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        navigate("/");
+        navigate("/recruiter");
       })
       .catch((err) => {
         console.log(err.response.data);
