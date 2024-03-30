@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../components/main/Sidebar";
 import Navbar from "../components/main/Navbar";
 import Chats from "../components/chat/Chats";
+import Jobs from "../components/recruiterMain/Jobs";
 
 const RecruiterMainModule = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -11,7 +12,7 @@ const RecruiterMainModule = () => {
       case "dashboard":
         return <div>Dash</div>;
       case "jobs":
-        return <div>Jobs</div>;
+        return <Jobs />;
       case "profile":
         return <div>Profile</div>;
       case "settings":
