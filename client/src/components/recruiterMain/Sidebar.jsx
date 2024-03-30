@@ -29,22 +29,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
       <div className="w-full px-5 h-full  overflow-y-auto mt-5 flex flex-col gap-2">
         <Card
           className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
-          onClick={() => setActiveSection("dashboard")}
-          s
-        >
-          <CardBody>
-            <div
-              className={`flex gap-2 items-center justify-start ${
-                activeSection === "dashboard" ? "text-[#0049FC]" : ""
-              }`}
-            >
-              <MdDashboard className="text-2xl" />
-              Dashboard
-            </div>
-          </CardBody>
-        </Card>
-        <Card
-          className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
           onClick={() => setActiveSection("jobs")}
         >
           <CardBody>
@@ -58,34 +42,18 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             </div>
           </CardBody>
         </Card>
-        
         <Card
           className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
-          onClick={() => setActiveSection("courses")}
+          onClick={() => setActiveSection("reviews")}
         >
           <CardBody>
             <div
               className={`flex gap-2 items-center justify-start ${
-                activeSection === "courses" ? "text-[#0049FC]" : ""
+                activeSection === "reviews" ? "text-[#0049FC]" : ""
               }`}
             >
               <FaRegBookmark className="text-2xl" />
-              Courses
-            </div>
-          </CardBody>
-        </Card>
-        <Card
-          className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
-          onClick={() => setActiveSection("profile")}
-        >
-          <CardBody>
-            <div
-              className={`flex gap-2 items-center justify-start ${
-                activeSection === "profile" ? "text-[#0049FC]" : ""
-              }`}
-            >
-              <FaUser className="text-2xl" />
-              Profile
+              Reviews
             </div>
           </CardBody>
         </Card>
@@ -101,21 +69,6 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             >
               <IoChatboxEllipsesOutline className="text-2xl" />
               Chat
-            </div>
-          </CardBody>
-        </Card>
-        <Card
-          className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
-          onClick={() => setActiveSection("settings")}
-        >
-          <CardBody>
-            <div
-              className={`flex gap-2 items-center justify-start ${
-                activeSection === "settings" ? "text-[#0049FC]" : ""
-              }`}
-            >
-              <IoIosSettings className="text-2xl" />
-              Settings
             </div>
           </CardBody>
         </Card>
