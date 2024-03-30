@@ -145,6 +145,7 @@ def input_pdf_text(uploaded_file):
 
 
 @app.route('/process', methods=['POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def process_resume():
     jd = request.form.get("jd")
     uploaded_file = request.files['file']
@@ -177,8 +178,9 @@ def process_resume():
     else:
         return jsonify({"error": "No file uploaded."}), 400
 
+
 @app.route('/recommend', methods=['POST'])
-@cross_origin()
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def recommend_jobs():
     user_data = request.json
     user_skills = user_data.get('skills', [])
@@ -196,6 +198,7 @@ def recommend_jobs():
 #     return jsonify(converted_data)
 
 @app.route('/recommend/users', methods=['POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def recommend_users():
     # Get the job object from the request body
     job = request.get_json()
