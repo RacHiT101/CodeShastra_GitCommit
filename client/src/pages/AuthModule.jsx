@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../components/recruiterAuth/Navbar";
-import Login from "../components/recruiterAuth/Login";
-import Register from "../components/recruiterAuth/Register";
+import Navbar from "../components/auth/Navbar";
+import Login from "../components/auth/Login";
+import Register from "../components/auth/Register";
 
 const AuthModule = () => {
   const [authType, setAuthType] = useState("login");
