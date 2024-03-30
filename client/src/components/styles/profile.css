@@ -1,0 +1,5 @@
+/* Hover effect */
+.option:hover .pr-3,
+.option:hover span {
+    color: blue;
+}

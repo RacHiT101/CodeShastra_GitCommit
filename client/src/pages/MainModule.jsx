@@ -10,7 +10,6 @@ const MainModule = () => {
     switch (activeSection) {
       case "dashboard":
         return <div><Dashboard/></div>;
-        return <Dashboard />;
       case "jobs":
         return <div>jobs</div>;
       case "profile":
