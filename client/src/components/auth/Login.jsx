@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginImage from "../../assets/signin.png";
 import {
   InputGroup,
@@ -11,8 +11,28 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { EmailIcon, LockIcon } from "@chakra-ui/icons";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setAuthType }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    axios
+      .post("http://localhost:5001/api/login", { email, password })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
   return (
     <div className="w-full h-full flex">
       <img
@@ -31,13 +51,23 @@ const Login = ({ setAuthType }) => {
               <InputLeftElement pointerEvents="none">
                 <EmailIcon color="gray.300" />
               </InputLeftElement>
-              <Input type="email" placeholder="Email Address" />
+              <Input
+                type="email"
+                placeholder="Email Address"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
             </InputGroup>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <LockIcon color="gray.300" />
               </InputLeftElement>
-              <Input type="password" placeholder="Password" />
+              <Input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
             </InputGroup>
             <div className="flex w-full px-3 text-sm justify-between items-center">
               <CheckboxGroup colorScheme="blue">
@@ -57,6 +87,7 @@ const Login = ({ setAuthType }) => {
               _hover={{
                 backgroundColor: "#0049FC99",
               }}
+              onClick={handleLogin}
             >
               Login
             </Button>
