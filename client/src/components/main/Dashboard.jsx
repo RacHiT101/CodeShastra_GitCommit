@@ -197,8 +197,8 @@ const Dashboard = () => {
             />
           </AreaChart>
         </div>
-        <div className="stats h-full w-full grid grid-cols-2 gap-5">
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+        <div className="stats h-full w-full grid grid-cols-2 gap-4">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl">
             <div className="text-lg">Potential Jobs</div>
             <div
               style={{
@@ -219,7 +219,7 @@ const Dashboard = () => {
               13
             </div>
           </div>
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl ">
             <div className="text-lg">Matched Jobs</div>
             <div
               style={{
@@ -240,7 +240,7 @@ const Dashboard = () => {
               9
             </div>
           </div>
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl">
             <div className="text-lg">Search Appearance</div>
             <div
               style={{
@@ -261,7 +261,7 @@ const Dashboard = () => {
               329
             </div>
           </div>
-          <div className="statschild h-28 w-full p-2 bg-white rounded-xl">
+          <div style={{height:"8rem"}} className="statschild w-full p-4 bg-white rounded-xl">
             <div className="text-lg">Applied Jobs</div>
             <div
               style={{
@@ -299,26 +299,6 @@ const Dashboard = () => {
             {showJobType === "recommended" ? "Show All" : "Show Recommended"}
           </span>
         </div>
-        {/* {<Stat className="statschild hover:shadow-2xl hover:shadow-[#57575730] w-full p-4 bg-white flex items-center justify-between rounded-xl">
-          <div className="flex items-center justify-around ">
-            <img
-              src="./static/images/grameenphone.jpeg"
-              className="mr-10 h-12"
-            />
-            <div className="flex flex-col">
-              <div className="text-lg font-bold">Product Designer</div>
-              <div className="text-xs w-full">
-                Gramphone
-                <span className="ms-5 text-xs text-gray-500">
-                  Dhaka, Bangladesh
-                </span>
-              </div>
-              <div className="font-bold text-[#0049FC] text-sm cursor-pointer mt-3">
-                View Job
-              </div>
-            </div>
-          </div>
-        </Stat>} */}
 
         {showJobType === "recommended" && (
           <div className="flex flex-col gap-5">

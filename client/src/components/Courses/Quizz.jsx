@@ -80,7 +80,7 @@ const Quizz = ({ selectedCourse, courses }) => {
   const renderResults = () => {
     return (
       <div>
-        <h2>Quiz Results</h2>
+        <h2 style={{fontSize:"1.5rem",fontWeight:"500"}}>Quiz Results</h2>
         <p>Score: {score}/{questions.length}</p>
         <p>Celebration message or other result feedback goes here!</p>
         <button onClick={resetQuiz} style={{width:"50%",padding:"1rem 1rem 1rem 1rem",marginTop:"2rem",fontWeight:"500",fontSize:"1.2rem"}} className="bg-blue-400 hover:bg-blue-600 text-white rounded-xl">
