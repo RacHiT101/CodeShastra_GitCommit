@@ -9,7 +9,7 @@ from bson.objectid import ObjectId
 import json
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 client = MongoClient('mongodb+srv://rachitgala05:rachitgala05@cluster0.j1uqmok.mongodb.net/test?retryWrites=true&w=majority', tlsCAFile=certifi.where())
 
