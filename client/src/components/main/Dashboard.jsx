@@ -28,6 +28,7 @@ import Job2 from "../../assets/Job2.png";
 import Job3 from "../../assets/Job3.png";
 import Job4 from "../../assets/Job4.png";
 import { AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
+import { BsStars } from "react-icons/bs";
 
 const Dashboard = () => {
   const [allJobs, setAllJobs] = useState([]);
@@ -418,6 +419,16 @@ const Dashboard = () => {
             </div>
           </ModalBody>
           <ModalFooter>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => {
+                alert("Feature not available yet");
+              }}
+            >
+              <BsStars className="mr-2"/>
+              Check my chances
+            </Button>
             <Button
               colorScheme="blue"
               mr={3}
