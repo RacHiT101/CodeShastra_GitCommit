@@ -74,7 +74,7 @@ const Register = ({ setAuthType }) => {
 
   const handleRegister = () => {
     axios
-      .post("http://localhost:5001/api/register", {
+      .post("http://localhost:5001/api/recruiters", {
         name: username,
         contact: phone,
         email,

@@ -22,7 +22,7 @@ const Login = ({ setAuthType }) => {
 
   const handleLogin = () => {
     axios
-      .post("http://localhost:5001/api/login", { email, password })
+      .post("http://localhost:5001/api/recruiters/login", { email, password })
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
@@ -33,6 +33,7 @@ const Login = ({ setAuthType }) => {
         console.log(err.response.data);
       });
   };
+  
   return (
     <div className="w-full h-full flex">
       <img
