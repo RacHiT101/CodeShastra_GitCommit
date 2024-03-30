@@ -100,7 +100,7 @@ exports.updateApplication = async (req, res) => {
 exports.getApplicationsByUser = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const applications = await Application.find({ userId });
+    const applications = await Application.find({ userId }).populate("jobId");
 
     res.status(200).json(applications);
   } catch (error) {

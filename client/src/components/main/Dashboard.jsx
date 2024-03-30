@@ -45,7 +45,6 @@ const Dashboard = () => {
     axios
       .get("http://localhost:5001/api/jobs")
       .then((res) => {
-        console.log(res.data.jobs);
         setAllJobs(res.data.jobs);
       })
       .catch((err) => {
@@ -55,18 +54,6 @@ const Dashboard = () => {
 
   const getRecommendedJobs = async () => {
     const skills = JSON.parse(localStorage.getItem("user"))?.skills;
-    //   axios
-    //     .post("http://localhost:5000/recommended", {
-    //       skills,
-    //       jobroleinterest: [""],
-    //     })
-    //     .then((res) => {
-    //       console.log(res.data);
-    //       setRecommendedJobs(res.data);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err.response.data);
-    //     });
     await fetch("http://localhost:5000/recommend", {
       method: "POST",
       headers: {
@@ -79,7 +66,6 @@ const Dashboard = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setRecommendedJobs(data);
       })
       .catch((err) => {
@@ -162,7 +148,7 @@ const Dashboard = () => {
             />
             <YAxis
               tickLine={false}
-              tickFormatter={(value) => (value === 0 ? "" : `${value / 1000}k`)}
+              tickFormatter={(value) => (value === 0 ? "" : value)}
             />
             <Tooltip />
             <Area
