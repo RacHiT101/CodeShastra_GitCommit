@@ -40,8 +40,8 @@ exports.getAllRecruiters = async (req, res) => {
 
 exports.getJobsByRecruiter = async (req, res) => {
     try {
-      const { recruiterId } = req.params;
-      const jobs = await Job.find({ recruiter: recruiterId });
+      const { id } = req.params;
+      const jobs = await Job.find({ recruiter: id });
       res.status(200).json({ jobs });
     } catch (error) {
       res.status(400).json({ message: error.message });
@@ -53,9 +53,19 @@ exports.getRecruiterById = async (id) => {
  return Recruiter.findById(id)
 };
 
-exports.getRecruiterByIdnew = async (req,res) => {
-    const { id } = req.params;
-    return Recruiter.findById(id)
-   };
+exports.getRecruiterByIdnew = async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+      const recruiter = await Recruiter.findById(id);
+      if (!recruiter) {
+          return res.status(404).json({ error: "Recruiter not found" });
+      }
+      res.json(recruiter);
+  } catch (error) {
+      console.error("Error fetching recruiter:", error);
+      res.status(500).json({ error: "Internal server error" });
+  }
+};
    
 

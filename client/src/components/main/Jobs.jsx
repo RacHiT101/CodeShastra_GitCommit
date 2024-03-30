@@ -34,6 +34,7 @@ import Job1 from "../../assets/Job1.png";
 import Job2 from "../../assets/Job2.png";
 import Job3 from "../../assets/Job3.png";
 import Job4 from "../../assets/Job4.png";
+import { NavLink } from "react-router-dom";
 
 const Jobs = () => {
   const [allJobs, setAllJobs] = useState([]);
@@ -315,7 +316,9 @@ const Jobs = () => {
                   className=" h-7"
                 />
                 <div className="flex justify-between w-full items-center">
-                  <div className="text-lg">{jobToDisplay?.recruiterName}</div>
+                <NavLink to={`/${jobToDisplay?.recruiter}`} className="text-lg">
+        {jobToDisplay?.recruiterName}
+      </NavLink>
                   <div className="text-gray-500 ms-3 text-sm">
                     {jobToDisplay?.location}
                   </div>

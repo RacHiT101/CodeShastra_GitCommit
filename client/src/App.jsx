@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthModule from "./pages/AuthModule";
 import MainModule from "./pages/MainModule";
 import RecruiterAuthModule from "./pages/RecruiterAuthModule";
+import RecruiterPage from "./pages/RecruiterPage";
 // import Chat from "./pages/Chat";
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
           <Route path="recruiter/auth" element={<RecruiterAuthModule />} />
           <Route path="" element={<MainModule />} />
           {/* <Route path="/courses" element={< />} /> */}
-          {/* <Route path="/chat/:id" element={<Chat />} /> */}
+          <Route path="/:id" element={<RecruiterPage />} />
         </Routes>
       </Router>
     </div>

@@ -32,6 +32,7 @@ import Job4 from "../../assets/Job4.png";
 import { AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
 import { BsStars } from "react-icons/bs";
 import VideoApp from "../../VideoApp";
+import { NavLink } from "react-router-dom";
 // import VideoApp from "../../VideoApp";
 
 const Dashboard = () => {
@@ -123,6 +124,8 @@ const Dashboard = () => {
   const [description, setDescription] = useState("");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  console.log(jobToDisplay);
 
   return (
     <div className="flex justify-evenly h-full w-full p-10 gap-5">
@@ -377,7 +380,12 @@ const Dashboard = () => {
               <div className="w-full mt-2 text-gray-700 flex gap-2 items-center justify-center">
                 <img src={getRandomImage()} className=" h-7" />
                 <div className="flex justify-between w-full items-center">
-                  <div className="text-lg">{jobToDisplay?.recruiterName}</div>
+                  <NavLink
+                    to={`/${jobToDisplay?.recruiter}`}
+                    className="text-lg"
+                  >
+                    {jobToDisplay?.recruiterName}
+                  </NavLink>
                   <div className="text-gray-500 ms-3 text-sm">
                     {jobToDisplay?.location}
                   </div>
@@ -431,7 +439,7 @@ const Dashboard = () => {
                 alert("Feature not available yet");
               }}
             >
-              <BsStars className="mr-2"/>
+              <BsStars className="mr-2" />
               Check my chances
             </Button>
             <Button
@@ -451,7 +459,6 @@ const Dashboard = () => {
                   <VideoApp />
       </Box> */}
       {/* <button onClick={() => setShowVideoApp(true)}>Show Video App</button> */}
-      
     </div>
   );
 };
