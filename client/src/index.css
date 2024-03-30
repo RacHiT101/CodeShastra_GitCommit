@@ -11,3 +11,7 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none; 
 }
+
+.statschild {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}

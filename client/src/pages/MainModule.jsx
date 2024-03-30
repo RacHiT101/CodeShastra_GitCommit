@@ -5,16 +5,15 @@ import Dashboard from "../components/main/Dashboard";
 import Profile from "../components/main/Profile";
 
 const MainModule = () => {
-  const [activeSection, setActiveSection] = useState("profile");
+  const [activeSection, setActiveSection] = useState("dashboard");
   const getSection = () => {
     switch (activeSection) {
       case "dashboard":
-        return <div><Dashboard/></div>;
         return <Dashboard />;
       case "jobs":
         return <div>jobs</div>;
       case "profile":
-        return <div><Profile/></div>;
+        return <Profile />;
       case "settings":
         return <div>settings</div>;
     }
