@@ -1,18 +1,61 @@
 // controllers/applicationController.js
 const Application = require('../models/Application');
+// const User = require('../controllers/userController');
+const User = require('../models/User'); 
+const User1 = require('../models/Recruiter'); 
+const Conversation = require('../models/Conversation');
+
+
 
 // Controller to create a new application
 exports.createApplication = async (req, res) => {
   try {
-    const { jobId, userId, additionalDoc } = req.body;
+    const { jobId, userId, recruiterId, additionalDoc } = req.body;
 
     const application = await Application.create({
       jobId,
       userId,
+      recruiterId,
       additionalDoc
     });
 
-    res.status(201).json(application);
+    const user = await User.findById(userId);
+    console.log(user);
+    const recruiter = await User1.findById(recruiterId);
+    console.log(recruiter);
+
+    let id1 = recruiterId;
+    let username1 = recruiter.name;
+    const id2 = userId;
+    let username2 = user.name;
+
+    // if (id1 > id2) {
+    //   id2 = [id1, (id1 = id2)][0];
+    //   username2 = [username1, (username1 = username2)][0];
+    // }
+
+    const currentTime = Date.now();
+    const welcomeMessage =
+      'Welcome to my chat app. To start a new conversation, please use the search bar to search for other people and click on them. If you have any question, please reply to this conversation. Developed by Viet Thanh';
+
+    const defaultConversation = await Conversation.create({
+      firstId: id1,
+      secondId: id2,
+      firstUserName: username1,
+      secondUserName: username2,
+      messages: [
+        {
+          content: welcomeMessage,
+          ofUser: recruiterId,
+          time: currentTime
+        }
+      ],
+      lastUpdate: currentTime,
+      lastSender: recruiter.name,
+      lastMessage: welcomeMessage
+    });
+
+    res.status(201).json({ conversation: defaultConversation, application });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -64,4 +107,18 @@ exports.getApplicationsByUser = async (req, res) => {
   }
 };
 
+
+// Controller to get all applications for a specific job for the recruiter
+exports.getApplicationsByJobForRecruiter = async (req, res) => {
+  try {
+    const { jobId, recruiterId } = req.params;
+
+    // Find all applications for the specific job and recruiter
+    const applications = await Application.find({ jobId, recruiterId });
+
+    res.status(200).json(applications);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 

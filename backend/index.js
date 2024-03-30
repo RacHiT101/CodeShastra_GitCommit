@@ -3,10 +3,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const socketio = require('socket.io');
 const userRoutes = require('./routes/userRoutes');
 const recruiterRoutes = require('./routes/recruiterRoutes');
 const jobRoutes = require('./routes/jobRoutes');
 const applicationRoutes = require('./routes/applicationRoutes');
+const chatRoutes = require('./routes/chatRoute');
 
 const app = express();
 dotenv.config();
@@ -29,10 +31,14 @@ app.use('/api', userRoutes);
 app.use('/api', recruiterRoutes);
 app.use('/api', jobRoutes);
 app.use('/api', applicationRoutes);
+app.use('/api', chatRoutes);
 
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
+
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
 
+const io = socketio(server, { pingTimeout: 60000 });
+require('./configurations/socket')(io);
