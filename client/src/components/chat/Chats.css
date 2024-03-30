@@ -1,0 +1,143 @@
+#chatcont{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.sidebar{
+    flex: 1;
+}
+
+.openchat{
+    flex: 2.5;
+}
+
+.chatnav{
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    background-color:black;
+    color: white;
+    padding: 4px;
+}
+
+#navimg,#searchimage{
+    background-color: #61876E;
+    border-radius: 50%;
+    height: 2vw;
+    width: 2vw;
+    object-fit: cover;
+}
+/* #navimg1{
+    background-color: brown;
+    height: 7vw;
+    width: 7vw;
+    object-fit: cover;
+} */
+
+#searchinput{
+    outline: none;
+    color: black;
+}
+.searchform{
+    border: none;
+    outline: none;
+}
+.userchat{
+    padding: 10px;
+    display: flex;
+    align-items:center;
+    gap: 10px;
+    cursor: pointer;
+}
+.userchat:hover{
+    background-color:#01008033;
+}
+.openchatinfo{
+    height: 8%;
+    display: flex;
+    align-items: center;
+}
+.openchatspan{
+    margin-left: 1vw;
+}
+
+
+.Inputfield{
+    height: 7vh;
+    background-color:#F4F4F4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#sendinput{
+    outline: none;
+    font-size:large;
+}
+
+#send{
+    margin-right: 1vw;
+}
+.send{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Message{
+    display: flex;
+    gap: 20px
+}
+
+.messageinfo{
+    display: flex;
+    flex-direction: column;
+    color: grey;
+    margin-bottom: 5vh;
+    padding: 0px 15px;
+}
+.messagecont{
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.text{
+    background-color:white;
+    padding: 10px 20px;
+    border-radius: 0px 10px 10px 10px;
+    max-width: max-content;
+}
+
+.owner{
+    flex-direction: row-reverse;
+}
+.textowner{
+    background-color:#9B62FF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px 0px 10px 10px;
+    max-width: max-content;
+}
+
+.textfile{
+    padding: 10px 20px;
+    border-radius: 0px 10px 10px 10px;
+    max-width: max-content;
+}
+.textownerfile{
+    padding: 10px 20px;
+    border-radius: 10px 0px 10px 10px;
+    max-width: max-content;
+}
+
+.messagecontowner{
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    align-items: flex-end;
+}
