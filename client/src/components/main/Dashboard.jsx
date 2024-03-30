@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import {
@@ -19,6 +20,7 @@ import {
   InputGroup,
   Input,
   ModalFooter,
+  Box,
 } from "@chakra-ui/react";
 import { CiMenuKebab } from "react-icons/ci";
 import axios from "axios";
@@ -29,10 +31,13 @@ import Job3 from "../../assets/Job3.png";
 import Job4 from "../../assets/Job4.png";
 import { AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
 import { BsStars } from "react-icons/bs";
+import VideoApp from "../../VideoApp";
+// import VideoApp from "../../VideoApp";
 
 const Dashboard = () => {
   const [allJobs, setAllJobs] = useState([]);
   const [recommendedJobs, setRecommendedJobs] = useState([]);
+  const [showVideoApp, setShowVideoApp] = useState(false);
 
   const [showJobType, setShowJobType] = useState("recommended");
 
@@ -441,6 +446,12 @@ const Dashboard = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+
+      {/* <Box container sx={{ width: "60%", height: "60%" }}>
+                  <VideoApp />
+      </Box> */}
+      {/* <button onClick={() => setShowVideoApp(true)}>Show Video App</button> */}
+      
     </div>
   );
 };

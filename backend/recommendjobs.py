@@ -11,7 +11,7 @@ import certifi
 from bson.objectid import ObjectId
 import json
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key="AIzaSyAJW_Q8F8dnfcMry56jNf1u2DNYJi2oGUs")
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -168,8 +168,10 @@ def process_resume():
 
         # Parse response
         try:
-            result_json = json.loads(response)
-            return jsonify(result_json)
+            print(response,type(response))
+            # result_json = json.loads(response)
+            # return jsonify(result_json)
+            return response, 200
         except json.JSONDecodeError:
             return jsonify({"error": "Unable to parse response."}), 400
     else:

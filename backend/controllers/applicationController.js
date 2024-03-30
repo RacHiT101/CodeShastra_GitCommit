@@ -35,28 +35,46 @@ exports.createApplication = async (req, res) => {
     //   username2 = [username1, (username1 = username2)][0];
     // }
 
-    const currentTime = Date.now();
-    const welcomeMessage =
-      'Welcome to my chat app. To start a new conversation, please use the search bar to search for other people and click on them. If you have any question, please reply to this conversation. Developed by Viet Thanh';
-
-    const defaultConversation = await Conversation.create({
-      firstId: id1,
-      secondId: id2,
-      firstUserName: username1,
-      secondUserName: username2,
-      messages: [
-        {
-          content: welcomeMessage,
-          ofUser: recruiterId,
-          time: currentTime
-        }
-      ],
-      lastUpdate: currentTime,
-      lastSender: recruiter.name,
-      lastMessage: welcomeMessage
+    let existingConversation = await Conversation.findOne({
+      $or: [
+        { $and: [{ firstId: userId }, { secondId: recruiterId }] },
+        { $and: [{ firstId: recruiterId }, { secondId: userId }] }
+      ]
     });
 
-    res.status(201).json({ conversation: defaultConversation, application });
+    if (!existingConversation) {
+      // If conversation doesn't exist, create a new one
+      const user = await User.findById(userId);
+      const recruiter = await User1.findById(recruiterId);
+
+      const id1 = recruiterId;
+      const username1 = recruiter.name || '';
+      const id2 = userId;
+      const username2 = user.name || '';
+
+      const currentTime = Date.now();
+      const welcomeMessage =
+        'Welcome to my chat app. To start a new conversation, please use the search bar to search for other people and click on them. If you have any question, please reply to this conversation. Developed by Viet Thanh';
+
+      existingConversation = await Conversation.create({
+        firstId: id1,
+        secondId: id2,
+        firstUserName: username1,
+        secondUserName: username2,
+        messages: [
+          {
+            content: welcomeMessage,
+            ofUser: recruiterId,
+            time: currentTime
+          }
+        ],
+        lastUpdate: currentTime,
+        lastSender: recruiter.name,
+        lastMessage: welcomeMessage
+      });
+    }
+
+    res.status(201).json({ conversation: existingConversation, application });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
