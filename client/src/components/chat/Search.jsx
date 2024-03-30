@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Chats.css';
-import { FaMapLocation } from "react-icons/fa";
+// import { FaMapLocation } from "react-icons/fa";
 
 const Search = () => {
   const [username, setusername] = useState("");
