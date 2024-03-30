@@ -7,6 +7,8 @@ import Courses from "../components/main/Courses";
 
 const MainModule = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
+
+  
   const getSection = () => {
     switch (activeSection) {
       case "dashboard":
