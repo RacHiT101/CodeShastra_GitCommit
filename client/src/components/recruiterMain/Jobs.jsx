@@ -15,10 +15,8 @@ const Jobs = () => {
       try {
         console.log("hii");
         const response = await axios.get(
-          // `http://localhost:5001/api/recruiters/${user._id}/jobs`
-          "http://localhost:5001/api/recruiters/6607ad7fa41e01b9636dede3/jobs"
+          `http://localhost:5001/api/recruiters/${user._id}/jobs`
         );
-        console.log(response.data.jobs);
         setJobs(response.data.jobs);
         // setLoading(false);
       } catch (error) {
