@@ -46,13 +46,13 @@ const Profile = () => {
                 <div style={{ color: "grey", fontWeight: "medium" }}>Product Designer</div>
             </div>
             <div style={{paddingRight:"5%",display:"flex"}}>
-                <ImShare2 style={{color:"blue",fontSize:"1.8rem",marginRight:"2rem"}} />
-                <HiDotsHorizontal style={{color:"blue",fontSize:"1.8rem"}}/>
+                <ImShare2 style={{color:"blue",fontSize:"1.8rem",marginRight:"2rem",cursor:"pointer"}} />
+                <HiDotsHorizontal style={{color:"blue",fontSize:"1.8rem",cursor:"pointer"}}/>
             </div>
         </div>
       </div>
 
-      <div className="flex justify-evenly h-full w-full p-10 gap-5 rounder-xl">
+      <div className="flex justify-evenly w-full p-10 gap-5 rounder-xl">
         <div className="stats w-1/5 bg-white flex flex-col justify-start items-start rounded-xl">
         <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Information' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Information')}>
             <div className="option flex items-center m-5 rounded-xl " style={{ paddingLeft: "1%" }}>
@@ -60,25 +60,25 @@ const Profile = () => {
               <span style={{ fontWeight: "bold" }}>Information</span>
             </div>
           </div>
-          <div className='p-1 w-full h-full hover:bg-blue-100 rounded-xl' style={{ cursor: "pointer" }} onClick={() => handleClick('Experiences')}>
+          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Experiences' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Experiences')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><BiSolidBriefcase style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Experiences</span>
             </div>
           </div>
-          <div className='p-1 w-full h-full hover:bg-blue-100 rounded-xl' style={{ cursor: "pointer" }} onClick={() => handleClick('Education')}>
+          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Education' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Education')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><GiTrophy style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Education</span>
             </div>
           </div>
-          <div className='p-1 w-full h-full hover:bg-blue-100 rounded-xl' style={{ cursor: "pointer" }} onClick={() => handleClick('Skills')}>
+          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Skills' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Skills')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><PiCrownFill style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Skills</span>
             </div>
           </div>
-          <div className='p-1 w-full h-full hover:bg-blue-100 rounded-xl' style={{ cursor: "pointer" }} onClick={() => handleClick('Attachments')}>
+          <div className={`p-1 w-full h-full rounded-xl ${selectedOption === 'Attachments' ? 'bg-blue-100' : 'hover:bg-blue-100'}`} style={{ cursor: "pointer" }} onClick={() => handleClick('Attachments')}>
             <div className="option flex items-center m-5 rounded-xl" style={{ paddingLeft: "1%" }}>
               <span className='pr-3'><IoDocumentText style={{ fontSize: "1.5rem" }} /></span>
               <span style={{ fontWeight: "bold" }}>Attachments</span>
