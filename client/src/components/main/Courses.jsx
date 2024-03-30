@@ -1,68 +1,315 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import {
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from "@chakra-ui/react";
+
+import CoursesName from "../Courses/CoursesName";
+import Quizz from "../Courses/Quizz";
+import RoadMap from "../Courses/RoadMap";
 
 const Courses = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("Computer Science");
 
-  const handleSearch = async () => {
-    // try {
-    //   const response = await axios.get(`https://serpapi.com/search.json?engine=google&q=${placeName}&location=${addressName}&google_domain=google.com&gl=us&hl=en&api_key=your_api_key`);
-    //   setSearchResults(response.data.images_results);
-    // } catch (error) {
-    //   console.error("Error fetching search results:", error);
-    // }
-    console.log("hiii");
+  const courses = {
+    Mathematics: [
+      {
+        name: "Algebra",
+        questions: [
+          {
+            question: "What is 2 + 2?",
+            options: ["3", "4", "5", "6"],
+            correctAnswer: "4",
+            image: "https://example.com/algebra_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "What is the square root of 25?",
+            options: ["3", "4", "5", "6"],
+            correctAnswer: "5",
+            image: "https://example.com/squareroot_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for Algebra
+        ]
+      },
+      {
+        name: "Calculus",
+        questions: [
+          {
+            question: "What is the derivative of x^2?",
+            options: ["2x", "3x", "x", "0"],
+            correctAnswer: "2x",
+            image: "https://example.com/calculus_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "What is the integral of sin(x)?",
+            options: ["cos(x)", "tan(x)", "sin(x)", "csc(x)"],
+            correctAnswer: "cos(x)",
+            image: "https://example.com/integral_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for Calculus
+        ]
+      },
+    ],
+    "Computer Science": [
+      {
+        name: "Introduction to Programming",
+        questions: [
+          {
+            question: "What is a variable?",
+            options: [
+              "A data structure",
+              "A programming language",
+              "A memory location",
+              "A file type",
+            ],
+            correctAnswer: "A memory location",
+            image: "https://example.com/variable_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "What is a function?",
+            options: [
+              "A data structure",
+              "A programming language",
+              "A memory location",
+              "A code block that performs a specific task",
+            ],
+            correctAnswer: "A code block that performs a specific task",
+            image: "https://example.com/function_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for Introduction to Programming
+        ]
+      },
+      {
+        name: "Data Structures and Algorithms",
+        questions: [
+          {
+            question: "What is a linked list?",
+            options: [
+              "A data structure",
+              "A programming language",
+              "A sorting algorithm",
+              "A file type",
+            ],
+            correctAnswer: "A data structure",
+            image: "https://example.com/linkedlist_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "What is a stack?",
+            options: [
+              "A data structure",
+              "A programming language",
+              "A sorting algorithm",
+              "A file type",
+            ],
+            correctAnswer: "A data structure",
+            image: "https://example.com/stack_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for Data Structures and Algorithms
+        ]
+      },
+    ],
+    Literature: [
+      {
+        name: "American Literature",
+        questions: [
+          {
+            question: "Who wrote 'The Great Gatsby'?",
+            options: ["F. Scott Fitzgerald", "Ernest Hemingway", "Mark Twain", "John Steinbeck"],
+            correctAnswer: "F. Scott Fitzgerald",
+            image: "https://example.com/greatgatsby_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "What is 'To Kill a Mockingbird' about?",
+            options: [
+              "A courtroom drama",
+              "A coming-of-age story",
+              "A fantasy adventure",
+              "A historical biography",
+            ],
+            correctAnswer: "A coming-of-age story",
+            image: "https://example.com/tokillamockingbird_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for American Literature
+        ]
+      },
+      {
+        name: "World Literature",
+        questions: [
+          {
+            question: "Who wrote 'Don Quixote'?",
+            options: ["Miguel de Cervantes", "Leo Tolstoy", "Fyodor Dostoevsky", "Charles Dickens"],
+            correctAnswer: "Miguel de Cervantes",
+            image: "https://example.com/donquixote_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "What is 'War and Peace' about?",
+            options: [
+              "A love story",
+              "A war epic",
+              "A political thriller",
+              "A philosophical novel",
+            ],
+            correctAnswer: "A war epic",
+            image: "https://example.com/warandpeace_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for World Literature
+        ]
+      },
+    ],
+    "Web Development": [
+      {
+        name: "HTML & CSS",
+        questions: [
+          {
+            question: "What does HTML stand for?",
+            options: [
+              "Hypertext Markup Language",
+              "Hyper Text Manipulation Language",
+              "Home Tool Markup Language",
+              "Hyperlink and Text Markup Language",
+            ],
+            correctAnswer: "Hypertext Markup Language",
+            image: "https://example.com/html_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "Which of the following is a CSS property for text alignment?",
+            options: ["text-align", "font-style", "padding", "background-color"],
+            correctAnswer: "text-align",
+            image: "https://example.com/css_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for HTML & CSS
+        ]
+      },
+      {
+        name: "JavaScript Fundamentals",
+        questions: [
+          {
+            question: "What is JavaScript primarily used for?",
+            options: [
+              "Styling web pages",
+              "Manipulating data",
+              "Creating database queries",
+              "Calculating mathematical equations",
+            ],
+            correctAnswer: "Manipulating data",
+            image: "https://example.com/javascript_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "Which of the following is NOT a JavaScript data type?",
+            options: ["string", "boolean", "integer", "object"],
+            correctAnswer: "integer",
+            image: "https://example.com/jsdatatypes_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for JavaScript Fundamentals
+        ]
+      },
+    ],
+    "Data Analytics": [
+      {
+        name: "Introduction to Data Analytics",
+        questions: [
+          {
+            question: "What is data analytics?",
+            options: [
+              "The process of analyzing data to make conclusions",
+              "The process of storing data in databases",
+              "The process of creating data visualizations",
+              "The process of designing algorithms",
+            ],
+            correctAnswer: "The process of analyzing data to make conclusions",
+            image: "https://example.com/dataanalytics_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "Which programming language is commonly used for data analysis?",
+            options: ["Java", "C++", "Python", "PHP"],
+            correctAnswer: "Python",
+            image: "https://example.com/python_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for Introduction to Data Analytics
+        ]
+      },
+      {
+        name: "Python for Data Analysis",
+        questions: [
+          {
+            question: "What is Pandas?",
+            options: [
+              "A data visualization library",
+              "A web development framework",
+              "A machine learning algorithm",
+              "A data manipulation library",
+            ],
+            correctAnswer: "A data manipulation library",
+            image: "https://example.com/pandas_image.jpg", // Optional: Add an image URL for the question
+          },
+          {
+            question: "What is NumPy?",
+            options: [
+              "A data visualization library",
+              "A web development framework",
+              "A machine learning algorithm",
+              "A numerical computing library",
+            ],
+            correctAnswer: "A numerical computing library",
+            image: "https://example.com/numpy_image.jpg", // Optional: Add an image URL for the question
+          },
+          // Add more questions for Python for Data Analysis
+        ]
+      },
+    ],
+  };
+  
+
+  const courseNames = Object.keys(courses);
+
+  const handleCourseClick = (course) => {
+    setSelectedCourse(course);
   };
 
   return (
-    <div className="pt-10 h-full w-full">
-      <div className="w-full">
-        {/* Search bar */}
-        <div className="relative ml-4 max-w-lg">
-          <input
-            type="text"
-            placeholder="Search courses..."
-            className="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button className="absolute right-0 top-0 mt-2 mr-2" onClick={handleSearch}>
-            {/* Search icon (you can replace it with your own icon) */}
-            <svg
-              className="h-5 w-5 text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-5.2-5.2M15 11a4 4 0 11-8 0 4 4 0 018 0z"
-              ></path>
-            </svg>
-          </button>
-        </div>
-        
-        {/* Display search results */}
-        <div className="grid grid-cols-2 gap-4 mt-6">
-          {searchResults.map((result, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img
-                className="w-full h-64 object-cover"
-                src={result.original}
-                alt={result.title}
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800">{result.title}</h3>
-                <div className="mt-4 flex items-center justify-between">
-                  <button className="text-sm text-blue-500 hover:underline">View Image</button>
+    <div className="flex h-full w-full p-10 gap-5">
+      <Tabs isFitted variant="enclosed" className="w-full">
+        <TabList mb="1em">
+          <Tab>Courses</Tab>
+          <Tab>Quizes</Tab>
+          <Tab>RoadMap</Tab>
+        </TabList>
+        <TabPanels className="overflow-auto h-full">
+          <TabPanel>
+            <CoursesName selectedCourse={selectedCourse} courses={courses} />
+          </TabPanel>
+          <TabPanel>
+           <Quizz selectedCourse={selectedCourse} courses={courses}/>
+          </TabPanel>
+          <TabPanel>
+           <RoadMap selectedCourse={selectedCourse} courses={courses}/>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+      
+      <div className="w-1/3 h-full flex gap-3 flex-col">
+        <div className="w-full flex flex-col h-full rounded-xl shadow-md shadow-gray-200 bg-white p-4">
+          <div className="flex h-12 mb-4 items-center justify-between">
+            <div className="">Courses For you</div>
+          </div>
+          <div className="flex flex-col h-full overflow-y-auto">
+            <div className="flex flex-col gap-5">
+              {courseNames.map((course) => (
+                <div
+                  className={`text-center shadow-lg p-4 cursor-pointer ${
+                    selectedCourse === course ? "text-blue-500" : ""
+                  }`}
+                  key={course}
+                  onClick={() => handleCourseClick(course)}
+                >
+                  {course}
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { IoIosSettings } from "react-icons/io";
 import { FaRegBookmark } from "react-icons/fa";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
 
+
 const Sidebar = ({ activeSection, setActiveSection }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   return (
@@ -57,6 +58,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
             </div>
           </CardBody>
         </Card>
+        
         <Card
           className={`transition-all duration-200 cursor-pointer active:translate-y-0`}
           onClick={() => setActiveSection("courses")}

@@ -26,9 +26,9 @@ exports.createApplication = async (req, res) => {
     console.log(recruiter);
 
     let id1 = recruiterId;
-    let username1 = recruiter.name;
+    let username1 = recruiter.name || "";
     const id2 = userId;
-    let username2 = user.name;
+    let username2 = user.name || "";
 
     // if (id1 > id2) {
     //   id2 = [id1, (id1 = id2)][0];
@@ -96,17 +96,16 @@ exports.updateApplication = async (req, res) => {
   }
 };
 
-// Controller to get applications of a specific user
 exports.getApplicationsByUser = async (req, res) => {
-  try {
-    const userId = req.params.userId;
-    const applications = await Application.find({ userId }).populate("jobId");
-
-    res.status(200).json(applications);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+    try {
+      const userId = req.params.userId;
+      const applications = await Application.find({ userId }).populate('jobId');
+  
+      res.status(200).json(applications);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };
 
 exports.getUsersByJob = async (req, res) => {
     try {

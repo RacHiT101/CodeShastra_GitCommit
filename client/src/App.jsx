@@ -11,6 +11,7 @@ export default function App() {
         <Routes>
           <Route path="auth" element={<AuthModule />} />
           <Route path="" element={<MainModule />} />
+          {/* <Route path="/courses" element={< />} /> */}
           {/* <Route path="/chat/:id" element={<Chat />} /> */}
         </Routes>
       </Router>

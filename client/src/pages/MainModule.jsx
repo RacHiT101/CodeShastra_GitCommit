@@ -9,6 +9,8 @@ import Chats from "../components/chat/Chats.jsx";
 
 const MainModule = () => {
   const [activeSection, setActiveSection] = useState("dashboard");
+
+  
   const getSection = () => {
     switch (activeSection) {
       case "dashboard":

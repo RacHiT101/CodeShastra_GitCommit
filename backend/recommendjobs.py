@@ -1,12 +1,17 @@
 # app.py (Flask Server)
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
+import google.generativeai as genai
+import PyPDF2 as pdf
+import os
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import certifi
 from bson.objectid import ObjectId
 import json
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -124,6 +129,52 @@ def get_user_recommendations(job):
     recommended_users = [users[i] for i in sorted_users_indices]
     return recommended_users
 
+def get_gemini_response(input):
+    model = genai.GenerativeModel('gemini-pro')
+    response = model.generate_content(input)
+    return response.text
+
+
+def input_pdf_text(uploaded_file):
+    reader = pdf.PdfReader(uploaded_file)
+    text = ""
+    for page in range(len(reader.pages)):
+        page = reader.pages[page]
+        text += str(page.extract_text())
+    return text
+
+
+@app.route('/process', methods=['POST'])
+def process_resume():
+    jd = request.form.get("jd")
+    uploaded_file = request.files['file']
+
+    if uploaded_file:
+        text = input_pdf_text(uploaded_file)
+        input_prompt = """
+        Hey Act Like a skilled or very experienced ATS (Application Tracking System)
+        with a deep understanding of the tech field, software engineering, data science, data analyst,
+        and big data engineer. Your task is to evaluate the resume based on the given job description.
+        give me the percentage of match if the resume matches
+        the job description. First the output should come as percentage and then keywords missing and last final thoughts.
+        You must consider the job market is very competitive and you should provide
+        best assistance for improving the resumes. Assign the percentage Matching based
+        on JD and
+        the missing keywords with high accuracy
+        resume:{text}
+        description:{jd}
+        """
+        response = get_gemini_response(input_prompt.format(text=text, jd=jd))
+
+        # Parse response
+        try:
+            result_json = json.loads(response)
+            return jsonify(result_json)
+        except json.JSONDecodeError:
+            return jsonify({"error": "Unable to parse response."}), 400
+    else:
+        return jsonify({"error": "No file uploaded."}), 400
+
 @app.route('/recommend', methods=['POST'])
 @cross_origin()
 def recommend_jobs():
@@ -150,6 +201,8 @@ def recommend_users():
     recommended_users = get_user_recommendations(job)
     converted_data = convert_objectid_to_string(recommended_users)
     return jsonify(converted_data)
+
+
 
 # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 if __name__ == '__main__':

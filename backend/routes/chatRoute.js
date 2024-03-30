@@ -7,10 +7,9 @@ router.get("/chats/search", chatController.findPeople);
 router.get("/chats/conversation", chatController.getConversation);
 router.get("/chats/get-messages", chatController.getMessages);
 router.get(
-  "/chats/conversation-list",
-
-  chatController.getConversationList
+  "/chats/conversation-list",chatController.getConversationList
 );
 router.post("/chats/send-message", chatController.sendMessage);
+router.get('/users-with-conversations', chatController.getUsersWithConversations);
 
 module.exports = router;
