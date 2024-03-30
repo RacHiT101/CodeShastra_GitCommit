@@ -47,3 +47,9 @@ exports.getJobsByRecruiter = async (req, res) => {
       res.status(400).json({ message: error.message });
     }
   };
+
+// Function to get a recruiter by ID
+exports.getRecruiterById = async (id) => {
+ return Recruiter.findById(id)
+};
+

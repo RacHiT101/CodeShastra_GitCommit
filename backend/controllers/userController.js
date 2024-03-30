@@ -85,3 +85,9 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+// Function to get a user by ID
+exports.getUserById = async (id) => {
+  return User.findById(id)
+};
+
+
