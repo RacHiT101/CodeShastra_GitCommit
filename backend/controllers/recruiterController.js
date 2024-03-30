@@ -1,5 +1,6 @@
 // controllers/recruiterController.js
 const Recruiter = require('../models/Recruiter');
+const Job = require('../models/Job');
 
 exports.createRecruiter = async (req, res) => {
   try {
@@ -36,6 +37,16 @@ exports.getAllRecruiters = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+exports.getJobsByRecruiter = async (req, res) => {
+    try {
+      const { recruiterId } = req.params;
+      const jobs = await Job.find({ recruiter: recruiterId });
+      res.status(200).json({ jobs });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };
 
 // Function to get a recruiter by ID
 exports.getRecruiterById = async (id) => {

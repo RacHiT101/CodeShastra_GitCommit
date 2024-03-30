@@ -1,4 +1,5 @@
 // controllers/applicationController.js
+
 const Application = require('../models/Application');
 // const User = require('../controllers/userController');
 const User = require('../models/User'); 
@@ -107,18 +108,31 @@ exports.getApplicationsByUser = async (req, res) => {
   }
 };
 
+exports.getUsersByJob = async (req, res) => {
+    try {
+        const jobId = req.params.jobId;
+        const applications = await Application.find({ jobId }).populate('userId');
 
-// Controller to get all applications for a specific job for the recruiter
-exports.getApplicationsByJobForRecruiter = async (req, res) => {
-  try {
-    const { jobId, recruiterId } = req.params;
+        const users = applications.map(application => application.userId);
 
-    // Find all applications for the specific job and recruiter
-    const applications = await Application.find({ jobId, recruiterId });
+        // Populate the user objects
+        const populatedUsers = await User.populate(users, { path: 'userId' });
 
-    res.status(200).json(applications);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+        // Filter out null user objects
+        const filteredUsers = populatedUsers.filter(user => user !== null);
+
+        res.status(200).json(filteredUsers);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 };
 
+
+  exports.getAllApplications = async (req, res) => {
+    try {
+      const applications = await Application.find();
+      res.status(200).json(applications);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };

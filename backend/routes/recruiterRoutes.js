@@ -7,5 +7,6 @@ router.post('/recruiters', recruiterController.createRecruiter);
 router.post('/recruiters/bulk', recruiterController.createMultipleRecruiters);
 router.get('/recruiters', recruiterController.getAllRecruiters);
 router.get('/recruiters/:id', recruiterController.getRecruiterById);
+router.get('/recruiters/:recruiterId/jobs', recruiterController.getJobsByRecruiter);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RegisterImage from "../../assets/signup.png";
+import axios from "axios";
 import {
   InputGroup,
   Stack,
@@ -31,6 +32,7 @@ import { FaUser } from "react-icons/fa";
 import man from "../../assets/man.png";
 import woman from "../../assets/woman.png";
 import othergender from "../../assets/star.png";
+import { useNavigate } from "react-router-dom";
 
 const areasOfInterestOptions = [
   "Sales",
@@ -86,10 +88,37 @@ const Register = ({ setAuthType }) => {
     useState(areasOfInterestOptions);
 
   const handleClick = (area) => {
-    setAreasOfInterest([...areasOfInterest, area]);
-    setFilteredAreasOfInterestOptions(
-      filteredAreasOfInterestOptions.filter((option) => option !== area)
+    setAreasOfInterest((prevAreas) => [...prevAreas, area]);
+    setFilteredAreasOfInterestOptions((prevOptions) =>
+      prevOptions.filter((option) => option !== area)
     );
+  };
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    axios
+      .post("http://localhost:5001/api/register", {
+        name: username,
+        contact: phone,
+        email,
+        skills: areasOfInterest,
+        course: studentType.course,
+        password,
+        degree: studentType.name,
+        location: city,
+      })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/");
+      })
+      .then(() => {
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -196,17 +225,27 @@ const Register = ({ setAuthType }) => {
                 </div>
               </div>
               <InputGroup>
-                <Input type="text" placeholder="Cuurent Location" />
+                <Input
+                  type="text"
+                  placeholder="Cuurent Location"
+                  onChange={(e) => setCity(e.target.value)}
+                />
               </InputGroup>
               <div className="-mb-3 flex text-sm flex-col w-full">
                 <label className="font-semibold">Gender</label>
               </div>
               <div className="flex items-center gap-2 w-full">
-                <div className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                <div
+                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  onClick={() => setGender("male")}
+                >
                   <img src={man} alt="man" className="w-5 h-5 rounded-full" />
                   Male
                 </div>
-                <div className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                <div
+                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  onClick={() => setGender("female")}
+                >
                   <img
                     src={woman}
                     alt="woman"
@@ -214,7 +253,12 @@ const Register = ({ setAuthType }) => {
                   />
                   Female
                 </div>
-                <div className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                <div
+                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  onClick={() => {
+                    setGender("other");
+                  }}
+                >
                   <img
                     src={othergender}
                     alt="man"
@@ -231,6 +275,7 @@ const Register = ({ setAuthType }) => {
                   className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
                   onClick={() => {
                     setShowSubType(true);
+                    setStudentType({ ...studentType, type: "college" });
                   }}
                 >
                   College student
@@ -239,6 +284,7 @@ const Register = ({ setAuthType }) => {
                   className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
                   onClick={() => {
                     setShowSubType(true);
+                    setStudentType({ ...studentType, type: "fresher" });
                   }}
                 >
                   Fresher
@@ -373,22 +419,9 @@ const Register = ({ setAuthType }) => {
               color={"white"}
               mr={3}
               onClick={() => {
-                if (
-                  !username ||
-                  !email ||
-                  !password ||
-                  !city ||
-                  !studentType.type ||
-                  !studentType.course ||
-                  !studentType.name ||
-                  !studentType.stream ||
-                  !studentType.startyear ||
-                  !studentType.endyear ||
-                  !areasOfInterest.length
-                )
+                if (!username || !email || !password)
                   return alert("Please fill all the details");
-
-                onClose();
+                handleRegister();
               }}
             >
               Submit

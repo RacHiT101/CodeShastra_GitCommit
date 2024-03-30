@@ -1,4 +1,3 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -11,7 +10,8 @@ const userSchema = new mongoose.Schema({
   location: { type: String },
   degree: { type: String },
   course: { type: String },
-  contact: { type: String }
+  contact: { type: String },
+  jobroleinterest: [{ type: String }] // New field
 });
 
 module.exports = mongoose.model('User', userSchema);
