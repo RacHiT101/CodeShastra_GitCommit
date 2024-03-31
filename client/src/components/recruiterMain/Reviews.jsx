@@ -6,7 +6,7 @@ import "../styles/reviews.css";
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
-    const [selectedYear, setSelectedYear] = useState(null);
+    const [selectedYear, setSelectedYear] = useState(2024);
     const user = JSON.parse(localStorage.getItem("user"));
 
     const dummyData = {
