@@ -5,6 +5,7 @@ const Recruiter = require('../models/Recruiter');
 // Create a single job
 exports.createJob = async (req, res) => {
   try {
+    console.log(req.body);
     const job = await Job.create(req.body);
     // Add the created job's ID to the recruiter's createdJobs array
     await Recruiter.findByIdAndUpdate(

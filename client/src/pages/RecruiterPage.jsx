@@ -97,31 +97,31 @@ const RecruiterPage = () => {
       <div className="w-full h-screen overflow-y-auto relative flex flex-col items-center justify-center ">
       <Navbar />
       <br></br>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
       <div style={{height:"20rem",color:"transparent"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
-      <div style={{height:"20rem"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
+      <div style={{height:"20rem",color:"transparent"}}>i</div>
       <div style={{height:"20rem",color:"transparent"}}>i</div>
       
       
