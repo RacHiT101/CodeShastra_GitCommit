@@ -24,6 +24,7 @@ exports.getConversation = async (req, res) => {
       { firstId: id2, secondId: id1 },
     ],
   }).lean();
+  console.log(cvs);
 
   if (cvs) return res.status(200).json({ conversation: cvs });
   const firstUser = await User.findById(id1).lean();
@@ -32,7 +33,7 @@ exports.getConversation = async (req, res) => {
   const newCvs = Conversation({
     firstId: id1,
     secondId: id2,
-    firstUserName: firstUser?.name || "Rachit",
+    firstUserName: firstUser.name,
     secondUserName: secondUser.name,
   });
   newCvs.save((err, conversation) => {
