@@ -11,7 +11,8 @@ const jobSchema = new mongoose.Schema({
   dateOfPosting: { type: Date, default: Date.now },
   deadline: { type: Date },
   duration: { type: String },
-  salary: { type: String }
+  salary: { type: String },
+  companyName: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Job', jobSchema);

@@ -2,6 +2,7 @@
 import React from 'react'
 
 const CoursesName = ({selectedCourse,courses}) => {
+  console.log(courses[selectedCourse]);
   return (
     <div className="stats h-64 w-full gap-5">
         {selectedCourse && (
