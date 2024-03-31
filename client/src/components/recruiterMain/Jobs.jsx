@@ -16,6 +16,12 @@ import {
 } from "@chakra-ui/react";
 import { IoLocationSharp } from "react-icons/io5";
 
+import { FaBlackTie } from "react-icons/fa";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { IoIosTimer } from "react-icons/io";
+import { FaTools } from "react-icons/fa";
+import { MdDescription } from "react-icons/md";
+
 const Jobs = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   console.log(user.name);
@@ -143,7 +149,7 @@ const Jobs = () => {
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
-                  children={<IoLocationSharp color="gray.300" />}
+                  children={<FaBlackTie color="gray.300" />}
                 />
                 <Input
                   type="text"
@@ -165,7 +171,7 @@ const Jobs = () => {
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
-                  children={<IoLocationSharp color="gray.300" />}
+                  children={<MdOutlineAttachMoney color="gray.300" />}
                 />
                 <Input
                   type="text"
@@ -176,7 +182,7 @@ const Jobs = () => {
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
-                  children={<IoLocationSharp color="gray.300" />}
+                  children={<IoIosTimer color="gray.300" />}
                 />
                 <Input
                   type="text"
@@ -187,7 +193,7 @@ const Jobs = () => {
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
-                  children={<IoLocationSharp color="gray.300" />}
+                  children={<FaTools color="gray.300" />}
                 />
                 <Input
                   type="text"
@@ -205,7 +211,7 @@ const Jobs = () => {
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
-                  children={<IoLocationSharp color="gray.300" />}
+                  children={<MdDescription color="gray.300" />}
                 />
                 <Input
                   type="text"
