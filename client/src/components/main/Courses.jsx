@@ -10,9 +10,11 @@ import {
 import CoursesName from "../Courses/CoursesName";
 import Quizz from "../Courses/Quizz";
 import RoadMap from "../Courses/RoadMap";
+import { BsStars } from "react-icons/bs";
 
 const Courses = () => {
   const [selectedCourse, setSelectedCourse] = useState("Computer Science");
+  const [Personalized, setPersonalized] = useState(false);
 
   const courses = {
     Mathematics: [
@@ -261,7 +263,7 @@ const Courses = () => {
       },
     ],
   };
-  
+
 
   const courseNames = Object.keys(courses);
 
@@ -271,7 +273,7 @@ const Courses = () => {
 
   return (
     <div className="flex h-full w-full p-10 gap-5">
-      <Tabs isFitted variant="enclosed" className="w-full">
+      {!Personalized ? <Tabs isFitted variant="enclosed" className="w-full">
         <TabList mb="1em">
           <Tab>Courses</Tab>
           <Tab>Quizes</Tab>
@@ -282,42 +284,75 @@ const Courses = () => {
             <CoursesName selectedCourse={selectedCourse} courses={courses} />
           </TabPanel>
           <TabPanel>
-           <Quizz selectedCourse={selectedCourse} courses={courses}/>
+            <Quizz selectedCourse={selectedCourse} courses={courses} />
           </TabPanel>
           <TabPanel>
-           <RoadMap selectedCourse={selectedCourse} courses={courses}/>
+            <RoadMap selectedCourse={selectedCourse} courses={courses} />
+          </TabPanel>
+          <TabPanel>
+            <RoadMap selectedCourse={selectedCourse} courses={courses} />
           </TabPanel>
         </TabPanels>
-      </Tabs>
-      
+      </Tabs> :
+        <div className="w-full flex items-start justify-center gap-4">
+          <div className="flex flex-col mb-6 w-[60%] relative">
+            <label htmlFor="learning" className="text-sm font-semibold mb-2">What You Want to Learn</label>
+            <input
+              type="text"
+              id="learning"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+              placeholder="E.g., Web Development, Data Science"
+            />
+          </div>
+          <div className="flex flex-col mb-6 w-[30%]">
+            <label htmlFor="duration" className="text-sm font-semibold mb-2">Duration of Course</label>
+            <input
+              type="text"
+              id="duration"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+              placeholder="E.g., 6 months"
+            />
+          </div>
+          <button className="px-6 py-2 mt-7 h-10 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400">
+            Search
+          </button>
+        </div>
+
+      }
+
       <div className="w-1/3 h-full flex gap-3 flex-col">
         <div className="w-full flex flex-col h-full rounded-xl shadow-xl shadow-gray-300 bg-white p-4">
           <div className="flex h-12 mb-4 items-center">
-            <div style={{fontSize:"1.5rem",fontWeight:"500"}}>Courses For you</div>
+            <div style={{ fontSize: "1.5rem", fontWeight: "500" }}>Courses For you</div>
           </div>
           <div className="flex flex-col h-full overflow-y-auto">
             <div className="flex flex-col gap-5">
               {courseNames.map((course) => (
-                <div style={{fontWeight:"medium",fontSize:"1.15rem",background: selectedCourse === course ? "#add8e6" : "inherit"}}
-                  className={`text-center p-4 cursor-pointer rounded-xl ${
-                    selectedCourse === course ? "text-blue-500" : "inherit"
-                  }`}
+                <div style={{ fontWeight: "medium", fontSize: "1.15rem", background: selectedCourse === course ? "#add8e6" : "inherit" }}
+                  className={`text-center p-4 cursor-pointer rounded-xl ${selectedCourse === course ? "text-blue-500" : "inherit"
+                    }`}
                   key={course}
-                onClick={() => handleCourseClick(course)}
-                onMouseEnter={() => {
-                  if (!selectedCourse) {
-                    setSelectedCourse(course);
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (!selectedCourse) {
-                    setSelectedCourse(null);
-                  }
-                }}
-              >
+                  onClick={() => handleCourseClick(course)}
+                  onMouseEnter={() => {
+                    if (!selectedCourse) {
+                      setSelectedCourse(course);
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (!selectedCourse) {
+                      setSelectedCourse(null);
+                    }
+                  }}
+                >
                   {course}
                 </div>
               ))}
+              <div style={{ fontWeight: "medium", fontSize: "1rem" }}
+                className="text-center p-4 cursor-pointer flex justify-center items-center rounded-xl text-white font-bold bg-blue-900" onClick={() => setPersonalized(true)}>
+
+                Personalized Roadmap
+                <BsStars className="mr-2" size={39} />
+              </div>
             </div>
           </div>
         </div>
