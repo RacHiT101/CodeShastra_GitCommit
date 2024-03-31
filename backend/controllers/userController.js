@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { getJson } = require("serpapi");
 
 // Function to create a new user
 exports.createUser = async (req, res) => {
@@ -89,5 +90,33 @@ exports.updateUser = async (req, res) => {
 exports.getUserById = async (id) => {
   return User.findById(id)
 };
+
+exports.getSerp = async (req, res) => {
+  try {
+    const { query } = req.body; // Extract the query from the request body
+    if (!query) {
+      return res.status(400).json({ error: 'Query parameter is required' });
+    }
+
+    // Define the search parameters
+    const searchParams = {
+      engine: "google",
+      q: query, // Use the query parameter here
+      location: "Austin, TX, Texas, United States",
+      api_key: "fa0de337384424b7daf2b133321d95486698bee24d84a18b33b0fe6c3a88b44f"
+    };
+
+    getJson(searchParams, (json) => {
+      console.log(json, typeof(json));
+      res.status(200).json(json);
+    });
+  } catch (error) {
+    console.error('Error processing SERP:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
+
 
 
