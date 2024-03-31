@@ -5,22 +5,30 @@ import { useNavigate } from "react-router-dom";
 
 const Jobs = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
-  const getData = async () => {
-    await axios
-      .get(`http://localhost:5001/api/recruiters/${user._id}/jobs`)
-      .then((res) => {
-        console.log(res.data.jobs);
-        setJobs(res.data.jobs);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+
+  console.log(user._id);
   useEffect(() => {
-    getData();
+    const fetchJobs = async () => {
+      try {
+        console.log("hii");
+        const response = await axios.get(
+          `http://localhost:5001/api/recruiters/${user._id}/jobs`
+        );
+        setJobs(response.data.jobs);
+        // setLoading(false);
+      } catch (error) {
+        // setError(error.response.data.message);
+        // setLoading(false);
+      }
+    };
+
+    fetchJobs();
   }, []);
+
+  console.log(jobs);
   return (
     <div className="w-full h-full pt-10 p-5 flex items-center justify-center">
       <div className="w-full p-6 bg-white rounded-2xl shadow-md shadow-gray-400 h-full flex flex-col gap-5">
