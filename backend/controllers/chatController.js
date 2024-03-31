@@ -24,6 +24,7 @@ exports.getConversation = async (req, res) => {
       { firstId: id2, secondId: id1 },
     ],
   }).lean();
+  console.log(cvs);
 
   if (cvs) return res.status(200).json({ conversation: cvs });
   const firstUser = await User.findById(id1).lean();
