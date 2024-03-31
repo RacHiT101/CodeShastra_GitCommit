@@ -20,36 +20,42 @@ const Courses = () => {
     Mathematics: [
       {
         name: "Algebra",
+        instructor: "Will Smith",
+        duration: "2 weeks",
+        level: "Beginner",
+        image: "https://imgs.search.brave.com/bX1p-jaZwdyGq2hQoiJclquI0VSojMOG_Vu6p1M99t0/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDcw/NDkzMzQxL3Bob3Rv/L21hdGgtcHJvYmxl/bXMuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPXpVNlpGNGZX/dGN3VHU1TW96c3lR/Y19BQUdza2tQWEh5/cnJvVTVmeGU5MVk9",
         questions: [
           {
             question: "What is 2 + 2?",
             options: ["3", "4", "5", "6"],
-            correctAnswer: "4",
-            image: "https://example.com/algebra_image.jpg", // Optional: Add an image URL for the question
+            correctAnswer: "4", 
           },
           {
             question: "What is the square root of 25?",
             options: ["3", "4", "5", "6"],
             correctAnswer: "5",
-            image: "https://example.com/squareroot_image.jpg", // Optional: Add an image URL for the question
           },
           // Add more questions for Algebra
         ]
       },
       {
         name: "Calculus",
+        instructor: "John Doe",
+        duration: "2 weeks",
+        level: "Intermediate",
+        image: "https://imgs.search.brave.com/JSzfzymRobYiDsZCR5HH7rLY7pPK48vX_lCpa6DYB0Q/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAwLzU1LzYyLzI0/LzM2MF9GXzU1NjIy/NDkwX3pvV2RpYlBI/azNGU0hMOHhjMnlN/czRlblhoNlFJUWU3/LmpwZw", // Optional: Add an image URL for the question
         questions: [
           {
             question: "What is the derivative of x^2?",
             options: ["2x", "3x", "x", "0"],
             correctAnswer: "2x",
-            image: "https://example.com/calculus_image.jpg", // Optional: Add an image URL for the question
+            
           },
           {
             question: "What is the integral of sin(x)?",
             options: ["cos(x)", "tan(x)", "sin(x)", "csc(x)"],
             correctAnswer: "cos(x)",
-            image: "https://example.com/integral_image.jpg", // Optional: Add an image URL for the question
+            
           },
           // Add more questions for Calculus
         ]
@@ -58,6 +64,10 @@ const Courses = () => {
     "Computer Science": [
       {
         name: "Introduction to Programming",
+        instructor: "Jane Doe", 
+        duration: "2 weeks",
+        level: "Beginner",
+        image: "https://imgs.search.brave.com/TBOTz3_sWxI9qv7HuJGX3-Q2uz3KBIi8XcUGiQR0_wE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzI1LzYzLzM4/LzM2MF9GXzEyNTYz/Mzg4NF9UNWEwQU96/bVlXSmtVTHBUdzNM/NGFCMVQ4dFVRTDE3/Zi5qcGc",
         questions: [
           {
             question: "What is a variable?",
@@ -68,7 +78,7 @@ const Courses = () => {
               "A file type",
             ],
             correctAnswer: "A memory location",
-            image: "https://example.com/variable_image.jpg", // Optional: Add an image URL for the question
+             // Optional: Add an image URL for the question
           },
           {
             question: "What is a function?",
@@ -79,13 +89,16 @@ const Courses = () => {
               "A code block that performs a specific task",
             ],
             correctAnswer: "A code block that performs a specific task",
-            image: "https://example.com/function_image.jpg", // Optional: Add an image URL for the question
           },
           // Add more questions for Introduction to Programming
         ]
       },
       {
         name: "Data Structures and Algorithms",
+        instructor: "John Smith",
+        duration: "2 weeks",
+        level: "Intermediate",
+        image: "https://imgs.search.brave.com/oXyAZdL7ImAAzcPKRkEFydfmt_LIuFhPuG5N58GCaaY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/c2tpbGx2ZXJ0ZXgu/Y29tL2Jsb2cvd3At/Y29udGVudC91cGxv/YWRzLzIwMjMvMDcv/ZHNhLXR5cGVzLnBu/Zw", // Optional: Add an image URL for the question
         questions: [
           {
             question: "What is a linked list?",
@@ -96,7 +109,7 @@ const Courses = () => {
               "A file type",
             ],
             correctAnswer: "A data structure",
-            image: "https://example.com/linkedlist_image.jpg", // Optional: Add an image URL for the question
+            
           },
           {
             question: "What is a stack?",
@@ -107,7 +120,6 @@ const Courses = () => {
               "A file type",
             ],
             correctAnswer: "A data structure",
-            image: "https://example.com/stack_image.jpg", // Optional: Add an image URL for the question
           },
           // Add more questions for Data Structures and Algorithms
         ]
@@ -116,12 +128,16 @@ const Courses = () => {
     Literature: [
       {
         name: "American Literature",
+        instructor: "Emily Johnson",
+        duration: "2 weeks",
+        level: "Intermediate",
+        image: "https://imgs.search.brave.com/Bxrn4q6gUOLKImrP9-GzQ_hbFlHkICC1T5gncMekG8Q/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAwLzIxLzE5LzM2/LzM2MF9GXzIxMTkz/NjY0X1h4bG9yU1Rk/anBjejFCQ1BKZlc4/b0UwNDRDWnlMN1Zp/LmpwZw", // Optional: Add an image URL for the question
         questions: [
           {
             question: "Who wrote 'The Great Gatsby'?",
             options: ["F. Scott Fitzgerald", "Ernest Hemingway", "Mark Twain", "John Steinbeck"],
             correctAnswer: "F. Scott Fitzgerald",
-            image: "https://example.com/greatgatsby_image.jpg", // Optional: Add an image URL for the question
+            
           },
           {
             question: "What is 'To Kill a Mockingbird' about?",
@@ -132,38 +148,20 @@ const Courses = () => {
               "A historical biography",
             ],
             correctAnswer: "A coming-of-age story",
-            image: "https://example.com/tokillamockingbird_image.jpg", // Optional: Add an image URL for the question
           },
           // Add more questions for American Literature
         ]
       },
-      {
-        name: "World Literature",
-        questions: [
-          {
-            question: "Who wrote 'Don Quixote'?",
-            options: ["Miguel de Cervantes", "Leo Tolstoy", "Fyodor Dostoevsky", "Charles Dickens"],
-            correctAnswer: "Miguel de Cervantes",
-            image: "https://example.com/donquixote_image.jpg", // Optional: Add an image URL for the question
-          },
-          {
-            question: "What is 'War and Peace' about?",
-            options: [
-              "A love story",
-              "A war epic",
-              "A political thriller",
-              "A philosophical novel",
-            ],
-            correctAnswer: "A war epic",
-            image: "https://example.com/warandpeace_image.jpg", // Optional: Add an image URL for the question
-          },
-          // Add more questions for World Literature
-        ]
-      },
+      
+      
     ],
     "Web Development": [
       {
         name: "HTML & CSS",
+        instructor: "Sarah Brown",
+        duration: "2 weeks",
+        level: "Beginner",
+        image: "https://imgs.search.brave.com/BJWhamI4wWe-Sq4XzsrU5dML3d-I8eDH2mB6rGgiNkQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzk0LzE5LzEw/LzM2MF9GXzE5NDE5/MTA1MV9rdlF6ZzBW/aXRSWE9ZQ0c3bDdo/Mjh0anRCNFZEN0pN/aC5qcGc",
         questions: [
           {
             question: "What does HTML stand for?",
@@ -174,19 +172,22 @@ const Courses = () => {
               "Hyperlink and Text Markup Language",
             ],
             correctAnswer: "Hypertext Markup Language",
-            image: "https://example.com/html_image.jpg", // Optional: Add an image URL for the question
+             // Optional: Add an image URL for the question
           },
           {
             question: "Which of the following is a CSS property for text alignment?",
             options: ["text-align", "font-style", "padding", "background-color"],
             correctAnswer: "text-align",
-            image: "https://example.com/css_image.jpg", // Optional: Add an image URL for the question
           },
           // Add more questions for HTML & CSS
         ]
       },
       {
         name: "JavaScript Fundamentals",
+        instructor: "Michael Johnson",
+        duration: "2 weeks",
+        level: "Intermediate",
+        image: "https://imgs.search.brave.com/UvjoWXXfDjE3BTj_LnWUwE7qzzIPrmmU2QIlYwDTX2Q/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/c2VhcmNoZW5naW5l/am91cm5hbC5jb20v/d3AtY29udGVudC91/cGxvYWRzLzIwMTkv/MDcvdW5kZXJzdGFu/ZGluZy1qYXZhc2Ny/aXB0LWZ1bmRhbWVu/dGFscy15b3VyLWNo/ZWF0LXNoZWV0LTc2/MHg0MDAuanBn", // Optional: Add an image URL for the question
         questions: [
           {
             question: "What is JavaScript primarily used for?",
@@ -197,13 +198,12 @@ const Courses = () => {
               "Calculating mathematical equations",
             ],
             correctAnswer: "Manipulating data",
-            image: "https://example.com/javascript_image.jpg", // Optional: Add an image URL for the question
+            
           },
           {
             question: "Which of the following is NOT a JavaScript data type?",
             options: ["string", "boolean", "integer", "object"],
             correctAnswer: "integer",
-            image: "https://example.com/jsdatatypes_image.jpg", // Optional: Add an image URL for the question
           },
           // Add more questions for JavaScript Fundamentals
         ]
@@ -212,6 +212,10 @@ const Courses = () => {
     "Data Analytics": [
       {
         name: "Introduction to Data Analytics",
+        instructor: "David Miller",
+        duration: "2 weeks",
+        level: "Beginner",
+        image: "https://imgs.search.brave.com/JZwJKV6xJGK-wEbwFUGxjq-_rsz7lSHsY963CSj-1QQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzUyLzYyLzI4/LzM2MF9GXzI1MjYy/MjgzNl9WQ1YyVmN0/dTk5N21uaDd5VlJY/dWtXMzZIaTBxWXhH/dS5qcGc", // Optional: Add an image URL for the question
         questions: [
           {
             question: "What is data analytics?",
@@ -222,19 +226,23 @@ const Courses = () => {
               "The process of designing algorithms",
             ],
             correctAnswer: "The process of analyzing data to make conclusions",
-            image: "https://example.com/dataanalytics_image.jpg", // Optional: Add an image URL for the question
+            
           },
           {
             question: "Which programming language is commonly used for data analysis?",
             options: ["Java", "C++", "Python", "PHP"],
             correctAnswer: "Python",
-            image: "https://example.com/python_image.jpg", // Optional: Add an image URL for the question
+            
           },
           // Add more questions for Introduction to Data Analytics
         ]
       },
       {
         name: "Python for Data Analysis",
+        instructor: "Jennifer Wilson",
+        duration: "2 weeks",
+        level: "Intermediate",
+        image: "https://imgs.search.brave.com/LN5X8mPWuu165JC8I77AMfhKhtWQCGsPOWlDYilSi5g/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9wcm9k/LWRpc2NvdmVyeS5l/ZHgtY2RuLm9yZy9j/ZG4tY2dpL2ltYWdl/L3dpZHRoPTM3OCxo/ZWlnaHQ9YXV0byxx/dWFsaXR5PTg1LGZv/cm1hdD13ZWJwL21l/ZGlhL2NvdXJzZS9p/bWFnZS8zODFhMDA0/Ni01ZDc4LTQ3OTAt/ODc3Ni03NDYyMGQ1/OWY0OGUtZTJlN2Y0/Njc3Y2UyLmpwZWc", // Optional: Add an image URL for the question
         questions: [
           {
             question: "What is Pandas?",
@@ -245,7 +253,6 @@ const Courses = () => {
               "A data manipulation library",
             ],
             correctAnswer: "A data manipulation library",
-            image: "https://example.com/pandas_image.jpg", // Optional: Add an image URL for the question
           },
           {
             question: "What is NumPy?",
@@ -256,7 +263,7 @@ const Courses = () => {
               "A numerical computing library",
             ],
             correctAnswer: "A numerical computing library",
-            image: "https://example.com/numpy_image.jpg", // Optional: Add an image URL for the question
+            
           },
           // Add more questions for Python for Data Analysis
         ]
