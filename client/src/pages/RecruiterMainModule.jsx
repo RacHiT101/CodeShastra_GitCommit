@@ -3,6 +3,7 @@ import Sidebar from "../components/recruiterMain/Sidebar";
 import Navbar from "../components/recruiterMain/Navbar";
 import Chats from "../components/chat/Chats";
 import Jobs from "../components/recruiterMain/Jobs";
+import Reviews from "../components/recruiterMain/Reviews";
 
 const RecruiterMainModule = () => {
   const [activeSection, setActiveSection] = useState("jobs");
@@ -12,7 +13,7 @@ const RecruiterMainModule = () => {
       case "jobs":
         return <Jobs />;
       case "reviews":
-        return <div>Profile</div>;
+        return <Reviews />;
       case "chat":
         return <Chats />;
     }

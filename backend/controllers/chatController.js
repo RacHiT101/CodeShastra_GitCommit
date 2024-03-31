@@ -32,7 +32,7 @@ exports.getConversation = async (req, res) => {
   const newCvs = Conversation({
     firstId: id1,
     secondId: id2,
-    firstUserName: firstUser.name,
+    firstUserName: firstUser?.name || "Rachit",
     secondUserName: secondUser.name,
   });
   newCvs.save((err, conversation) => {
