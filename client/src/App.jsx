@@ -12,6 +12,12 @@ import axios from "axios";
 
 export default function App() {
   const [translatedText, setTranslatedText] = useState("");
+  useEffect(() => {
+    const googleScript = document.createElement("script");
+    googleScript.src = `https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit`;
+    googleScript.async = true;
+    document.body.appendChild(googleScript);
+  }, []);
 
   const GoogleTranslate = async () => {
     const encodedParams = new URLSearchParams();
@@ -44,7 +50,14 @@ export default function App() {
 
   return (
     <div className="h-screen font-pops bg-hero w-screen overflow-hidden">
-      <div id="google_translate_element" class="fixed bottom-5 left-5 z-50 bg-blue-500 p-4 rounded-lg shadow-md">
+      <div
+        className="fixed bottom-2 right-2 h-10 w-10 z-50 bg-blue-500 overflow-hidden rounded-full shadow-md
+      "
+      >
+        <div
+          id="google_translate_element"
+          class="h-5 w-5 z-50 bg-blue-500 rounded-lg shadow-md"
+        ></div>
       </div>
       <Router>
         <Routes>
