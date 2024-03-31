@@ -236,14 +236,22 @@ const Register = ({ setAuthType }) => {
               </div>
               <div className="flex items-center gap-2 w-full">
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer
+                    ${
+                      gender === "male" &&
+                      "bg-[#0049FC20] border-2 border-[#0049FC]"
+                    }
+                  `}
                   onClick={() => setGender("male")}
                 >
                   <img src={man} alt="man" className="w-5 h-5 rounded-full" />
                   Male
                 </div>
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                    gender === "female" &&
+                    "bg-[#0049FC20] border-2 border-[#0049FC]"
+                  }`}
                   onClick={() => setGender("female")}
                 >
                   <img
@@ -254,7 +262,10 @@ const Register = ({ setAuthType }) => {
                   Female
                 </div>
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer  ${
+                    gender === "other" &&
+                    "bg-[#0049FC20] border-2 border-[#0049FC]"
+                  }`}
                   onClick={() => {
                     setGender("other");
                   }}
@@ -272,7 +283,10 @@ const Register = ({ setAuthType }) => {
               </div>
               <div className="flex items-center gap-2 w-full">
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                    studentType.type === "college" &&
+                    `bg-[#0049FC20] border-2 border-[#0049FC]`
+                  }`}
                   onClick={() => {
                     setShowSubType(true);
                     setStudentType({ ...studentType, type: "college" });
@@ -281,7 +295,10 @@ const Register = ({ setAuthType }) => {
                   College student
                 </div>
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                    studentType.type === "fresher" &&
+                    `bg-[#0049FC20] border-2 border-[#0049FC]`
+                  }`}
                   onClick={() => {
                     setShowSubType(true);
                     setStudentType({ ...studentType, type: "fresher" });
@@ -290,25 +307,37 @@ const Register = ({ setAuthType }) => {
                   Fresher
                 </div>
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                    studentType.type === "working" &&
+                    `bg-[#0049FC20] border-2 border-[#0049FC]`
+                  }`}
                   onClick={() => {
                     setShowSubType(true);
+                    setStudentType({ ...studentType, type: "working" });
                   }}
                 >
                   Working professional
                 </div>
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                    studentType.type === "school" &&
+                    `bg-[#0049FC20] border-2 border-[#0049FC]`
+                  }`}
                   onClick={() => {
                     setShowSubType(true);
+                    setStudentType({ ...studentType, type: "school" });
                   }}
                 >
                   School student
                 </div>
                 <div
-                  className="w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer"
+                  className={`w-fit px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                    studentType.type === "woman" &&
+                    `bg-[#0049FC20] border-2 border-[#0049FC]`
+                  }`}
                   onClick={() => {
                     setShowSubType(true);
+                    setStudentType({ ...studentType, type: "woman" });
                   }}
                 >
                   Woman returning to work
@@ -320,19 +349,59 @@ const Register = ({ setAuthType }) => {
                     <label className="font-semibold">Course</label>
                   </div>
                   <div className="flex items-center gap-2 w-full">
-                    <div className="w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                    <div
+                      className={`w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                        studentType.course === "btech" &&
+                        `bg-[#0049FC20] border-2 border-[#0049FC]`
+                      }`}
+                      onClick={() =>
+                        setStudentType({ ...studentType, course: "btech" })
+                      }
+                    >
                       BTech
                     </div>
-                    <div className="w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                    <div
+                      className={`w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                        studentType.course === "be" &&
+                        `bg-[#0049FC20] border-2 border-[#0049FC]`
+                      }`}
+                      onClick={() =>
+                        setStudentType({ ...studentType, course: "be" })
+                      }
+                    >
                       BE
                     </div>
-                    <div className="w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                    <div
+                      className={`w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                        studentType.course === "bcom" &&
+                        `bg-[#0049FC20] border-2 border-[#0049FC]`
+                      }`}
+                      onClick={() =>
+                        setStudentType({ ...studentType, course: "bcom" })
+                      }
+                    >
                       BCom
                     </div>
-                    <div className="w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                    <div
+                      className={`w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                        studentType.course === "mba" &&
+                        `bg-[#0049FC20] border-2 border-[#0049FC]`
+                      }`}
+                      onClick={() =>
+                        setStudentType({ ...studentType, course: "mba" })
+                      }
+                    >
                       MBA
                     </div>
-                    <div className="w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer">
+                    <div
+                      className={`w-fit min-w-16 justify-center px-3 flex gap-2 items-center py-2 rounded-3xl border-2 border-gray-300 hover:bg-[#0049FC20] cursor-pointer ${
+                        studentType.course === "ba" &&
+                        `bg-[#0049FC20] border-2 border-[#0049FC]`
+                      }`}
+                      onClick={() =>
+                        setStudentType({ ...studentType, course: "ba" })
+                      }
+                    >
                       BA
                     </div>
                   </div>
