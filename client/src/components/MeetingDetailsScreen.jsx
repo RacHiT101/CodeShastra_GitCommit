@@ -3,6 +3,8 @@
 // import { CheckIcon, ClipboardIcon } from "@heroicons/react/outline";
 import { Constants } from "@videosdk.live/react-sdk";
 import { useState } from "react";
+import { FaCheck } from "react-icons/fa";
+import { FaRegClipboard } from "react-icons/fa6";
 
 export function MeetingDetailsScreen({
   onClickJoin,
@@ -38,11 +40,11 @@ export function MeetingDetailsScreen({
               }, 3000);
             }}
           >
-            {/* {isCopied ? (
-              <CheckIcon className="h-5 w-5 text-green-400" />
+            {isCopied ? (
+              <FaCheck className="h-5 w-5 text-green-400" />
             ) : (
-              <ClipboardIcon className="h-5 w-5 text-white" />
-            )} */}
+              <FaRegClipboard className="h-5 w-5 text-white" />
+            )}
           </button>
         </div>
       ) : isJoinMeetingClicked ? (

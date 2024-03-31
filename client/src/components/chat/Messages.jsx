@@ -13,9 +13,16 @@ const Messages = ({ user }) => {
   const fetchMessages = async () => {
     try {
       console.log(firstId);
-      const response = await axios.get(
+      let response={}
+      if(user._id!==firstId.firstId)
+     { response = await axios.get(
         `http://localhost:5001/api/chats/conversation?id1=${user._id}&id2=${firstId.firstId}`
-      );
+      );}
+      else{
+        response = await axios.get(
+          `http://localhost:5001/api/chats/conversation?id1=${user._id}&id2=${firstId.secondId}`
+        );
+      }
       setMessages(response.data.conversation.messages);
       console.log(response.data.conversation.messages);
     } catch (error) {

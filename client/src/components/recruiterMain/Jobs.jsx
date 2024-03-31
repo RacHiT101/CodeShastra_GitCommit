@@ -121,7 +121,7 @@ const Jobs = () => {
                     fontSize={12}
                     onClick={() => {
                       navigate("/recruiter/applications", {
-                        state: { jobId: job._id },
+                        state: { jobId: job },
                       });
                     }}
                   >
