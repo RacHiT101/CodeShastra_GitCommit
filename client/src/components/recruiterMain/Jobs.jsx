@@ -1,15 +1,26 @@
-import { Button } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  InputGroup,
+  Input,
+  InputLeftElement,
+} from "@chakra-ui/react";
+import { IoLocationSharp } from "react-icons/io5";
 
 const Jobs = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
+  console.log(user.name);
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
-
-  console.log(user._id);
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -28,13 +39,37 @@ const Jobs = () => {
     fetchJobs();
   }, []);
 
-  console.log(jobs);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [job, setJob] = useState({
+    title: "",
+    location: "",
+    salary: "",
+    duration: "",
+    skillsReqd: [],
+    jobDescription: "",
+  });
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(`http://localhost:5001/api/jobs`, {
+        ...job,
+        recruiter: user._id,
+        recruiterName: user.name,
+      });
+      console.log(response.data);
+      setJobs([...jobs, response.data.job]);
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full h-full pt-10 p-5 flex items-center justify-center">
       <div className="w-full p-6 bg-white rounded-2xl shadow-md shadow-gray-400 h-full flex flex-col gap-5">
         <div className="w-full justify-between items-center flex">
           <h1 className="text-2xl font-bold">Jobs</h1>
-          <Button color="white" backgroundColor="#0049FC">
+          <Button color="white" onClick={onOpen} backgroundColor="#0049FC">
             Create Job Posting
           </Button>
         </div>
@@ -98,6 +133,105 @@ const Jobs = () => {
           ))}
         </div>
       </div>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create Job Posting</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <div className="flex flex-col gap-3">
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<IoLocationSharp color="gray.300" />}
+                />
+                <Input
+                  type="text"
+                  placeholder="Job Title"
+                  onChange={(e) => setJob({ ...job, title: e.target.value })}
+                />
+              </InputGroup>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<IoLocationSharp color="gray.300" />}
+                />
+                <Input
+                  type="text"
+                  placeholder="Location"
+                  onChange={(e) => setJob({ ...job, location: e.target.value })}
+                />
+              </InputGroup>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<IoLocationSharp color="gray.300" />}
+                />
+                <Input
+                  type="text"
+                  placeholder="Salary"
+                  onChange={(e) => setJob({ ...job, salary: e.target.value })}
+                />
+              </InputGroup>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<IoLocationSharp color="gray.300" />}
+                />
+                <Input
+                  type="text"
+                  placeholder="Duration"
+                  onChange={(e) => setJob({ ...job, duration: e.target.value })}
+                />
+              </InputGroup>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<IoLocationSharp color="gray.300" />}
+                />
+                <Input
+                  type="text"
+                  placeholder="Skills Required"
+                  onChange={(e) =>
+                    setJob({
+                      ...job,
+                      skillsReqd: e.target.value
+                        .split(",")
+                        .map((skill) => skill.trim()),
+                    })
+                  }
+                />
+              </InputGroup>
+              <InputGroup>
+                <InputLeftElement
+                  pointerEvents="none"
+                  children={<IoLocationSharp color="gray.300" />}
+                />
+                <Input
+                  type="text"
+                  placeholder="Job Description"
+                  onChange={(e) =>
+                    setJob({ ...job, jobDescription: e.target.value })
+                  }
+                />
+              </InputGroup>
+            </div>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Save
+            </Button>
+            <Button variant="ghost">Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
   );
 };
