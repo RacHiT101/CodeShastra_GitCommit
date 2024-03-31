@@ -234,7 +234,7 @@ const Jobs = () => {
                           {job.title}
                         </div>
                         <div className="text-sm font-bold w-full">
-                          {job.company || "Amazon"}
+                          {job.companyName || "Amazon"}
                           <span className="ms-3 text-xs font-normal text-gray-500">
                             {job.location}
                           </span>
@@ -272,7 +272,7 @@ const Jobs = () => {
                           {job.title}
                         </div>
                         <div className="text-sm font-bold w-full">
-                          {job.company || "Amazon"}
+                          {job.companyName || "Amazon"}
                           <span className="ms-3 text-xs font-normal text-gray-500">
                             {job.location}
                           </span>
@@ -316,9 +316,12 @@ const Jobs = () => {
                   className=" h-7"
                 />
                 <div className="flex justify-between w-full items-center">
-                <NavLink to={`/${jobToDisplay?.recruiter}`} className="text-lg">
-        {jobToDisplay?.recruiterName}
-      </NavLink>
+                  <NavLink
+                    to={`/${jobToDisplay?.recruiter}`}
+                    className="text-lg"
+                  >
+                    {jobToDisplay?.recruiterName}
+                  </NavLink>
                   <div className="text-gray-500 ms-3 text-sm">
                     {jobToDisplay?.location}
                   </div>
