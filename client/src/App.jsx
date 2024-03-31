@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthModule from "./pages/AuthModule";
 import MainModule from "./pages/MainModule";
@@ -38,11 +39,13 @@ export default function App() {
   };
 
   useEffect(() => {
-    GoogleTranslate();
+    // GoogleTranslate();
   }, []);
 
   return (
     <div className="h-screen font-pops bg-hero w-screen overflow-hidden">
+      <div id="google_translate_element" class="fixed bottom-5 left-5 z-50 bg-blue-500 p-4 rounded-lg shadow-md">
+      </div>
       <Router>
         <Routes>
           <Route path="auth" element={<AuthModule />} />
